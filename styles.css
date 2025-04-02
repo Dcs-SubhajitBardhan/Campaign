@@ -8,54 +8,42 @@
 }
 
 /* Variables for consistent theming */
+/* Updated Variables */
 :root {
-    --primary-color: #1a6b9d; /* A nice green */
-    --secondary-color: #f44336; /* A contrasting red */
-    --accent-color: #FFC107; /* A vibrant yellow/amber */
-    --text-color-primary: #333;
-    --text-color-secondary: #ffffff;
-    --bg-light: #7d888b47;
-    --bg-dark: #656a638a;
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --transition-fast: 0.2s ease-in-out;
-    --transition-medium: 0.3s ease-in-out;
+  --primary-color: #6de312;
+  --secondary-color: #70706d6f;
+  --submenue-color: #efc84af9;
+  --hover-color: #fcb045; /* New hover color (orange shade) */
+  --menu-background-color: #8e44ad; /* New menu background color (purple shade) */
+
+  --text-color-primary: #333;
+  --text-color-secondary: #ffffff;
+  --bg-light: #f0f4f8;
+  --bg-dark: #3b4f63;
+  --gradient-light: linear-gradient(135deg, #7d8ea1, #8592b4);
+  --gradient-dark: linear-gradient(135deg, #3b4f63, #9aa9b243);
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --transition-fast: 0.2s ease-in-out;
+  --transition-medium: 0.3s ease-in-out;
 }
 
 /* Body Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-color-primary);
+    background: var(--gradient-light);
     display: flex;
-    font-size: 18px; /* Slightly smaller, often looks cleaner */
     flex-direction: column;
     min-height: 100vh;
-    color: var(--text-color-primary);
-    background-color: var(--bg-light);
-    line-height: 1.6; /* Improved readability */
-    margin-top: 60px; /* Adjust for potentially taller navbar */
-}
-
-/* Typography Enhancements */
-h1, h2, h3 {
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 1em;
-    line-height: 1.2;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-
-a:hover {
-    color: var(--secondary-color);
+    margin-top: 70px;
 }
 
 /* Navigation Bar Styling */
 .navbar {
-    background-color: var(--primary-color);
+    background: var(--gradient-dark);
     color: var(--text-color-secondary);
     display: flex;
     justify-content: space-between;
@@ -64,17 +52,21 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 55px 30px; /* Increased padding */
+    padding: 15px 30px;
     z-index: 1000;
     box-shadow: var(--shadow-md);
+    border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
 }
 
 .navbar-brand {
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
+    text-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
 }
 
 .navbar-brand:hover {
+    transform: scale(1.1); /* Slight zoom effect */
     color: var(--accent-color);
 }
 
@@ -83,108 +75,121 @@ a:hover {
     height: 100%;
     width: 0;
     position: fixed;
-    top: 50px; /* Adjust to match navbar height */
+    top: 51px; /* Below the navbar */
     left: 0;
-    background-color: var(--bg-dark);
-    color: var(--text-color-secondary);
+    background: var(--gradient-dark);
+    color: white;
     overflow-x: hidden;
-    transition: 0.4s ease-in-out; /* Smoother transition */
-    padding-top: 30px;
-    z-index: 999;
+    transition: width var(--transition-medium);
     box-shadow: var(--shadow-md);
+    border-radius: 0 10px 10px 0; /* Rounded corners at the right */
+    display: flex;
+    flex-direction: column;
 }
 
 .drawer a {
-    padding: 12px 25px;
-    text-decoration: none;
+    padding: 15px 20px;
     color: var(--text-color-secondary);
-    display: block;
-    transition: background-color var(--transition-fast);
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .drawer a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter on hover */
+    background-color: var(--secondary-color);
+    transform: translateX(5px); /* Slide-in effect */
 }
 
-.drawer .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2em;
-    color: var(--text-color-secondary);
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity var(--transition-fast);
+/* Submenu Styling */
+.submenu {
+  display: none; /* Hidden by default */
+  background: var(--gradient-light); /* Soft gradient background */
+  padding: 10px 20px; /* Add padding for spacing */
+  border-left: 4px solid var(--accent-color); /* Highlighted border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: var(--shadow-sm); /* Subtle shadow for depth */
+  transition: background-color var(--transition-medium), transform var(--transition-medium);
+
+  /* Ensure items stack vertically */
+  display: block; /* Display block ensures stacking */
 }
 
-.drawer .close-btn:hover {
-    opacity: 1;
+.submenu a {
+  display: block; /* Each link behaves as a block to stack vertically */
+  font-size: 1em;
+  color: white; /* Contrasting text color */
+  padding: 10px 15px;
+  margin-bottom: 5px; /* Adds spacing between items */
+  text-decoration: none; /* Removes underline */
+  border-bottom: 1px dashed var(--accent-color); /* Dashed separator */
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Hover Effects */
+.submenu:hover {
+  background: rgba(210, 206, 206, 0.385); /* Change background on hover */
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+.submenu a:hover {
+  color: var(--submenue-color); /* Change text color on hover */
+  transform: translateX(10px); /* Slide-in effect for menu items */
+  border-bottom: 1px solid var(--primary-color); /* Solid separator on hover */
 }
 
 /* Open Button Styling */
 .open-btn {
     cursor: pointer;
-    width: 35px; /* Slightly larger */
-    height: 35px;
-    padding: 8px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
     object-fit: contain;
-    background-color: transparent;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
     border: none;
-    align-self: center;
-    opacity: 0.8;
-    transition: opacity var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .open-btn:hover {
-    opacity: 1;
+    background-color: var(--accent---hover--color);
+    transform: rotate(90deg); /* Fun rotation effect */
 }
 
 /* Main Content Styling */
 .main-content {
-    margin-top: 60px; /* Match navbar height */
-    margin-left: 0; /* Initially no left margin */
-    padding: 30px; /* Increased padding */
+    margin-top: 70px; /* Adjusted for navbar height */
+    padding: 30px;
     flex-grow: 1;
     background-color: var(--bg-light);
-    min-height: calc(100vh - 60px); /* Adjust for navbar height */
-    transition: margin-left var(--transition-medium); /* Smooth transition for content shift */
+    border-radius: 10px; /* Subtle rounded corners */
+    box-shadow: var(--shadow-md);
+    transition: margin-left var(--transition-medium);
 }
 
 /* Responsive Design */
-@media screen and (min-width: 769px) {
-    .main-content.drawer-open {
-        margin-left: 250px; /* Adjust when drawer is open */
-    }
-}
-
 @media screen and (max-width: 768px) {
     .navbar {
-        padding: 20px 20px;
+        padding: 10px 20px;
     }
 
     .navbar-brand {
-        font-size: 1.3em;
+        font-size: 1.4em;
     }
 
     .open-btn {
         width: 30px;
         height: 30px;
-        padding: 5px;
     }
 
-    .main-content {
-        padding: 20px;
-        margin-top: 50px; /* Adjust if navbar height changes */
-    }
-
-    .main-content.drawer-open {
-        margin-left: 200px; /* Adjusted drawer width for smaller screens */
+    .drawer a {
+        font-size: 1em;
     }
 }
 
 @media screen and (max-width: 480px) {
     .navbar-brand {
-        font-size: 1.1em;
+        font-size: 1.2em;
     }
 
     .open-btn {
@@ -193,15 +198,6 @@ a:hover {
     }
 
     .drawer {
-        width: 80%; /* Take up more screen on very small devices */
-    }
-
-    .main-content {
-        padding: 15px;
-        margin-top: 50px; /* Adjust if navbar height changes */
-    }
-
-    .main-content.drawer-open {
-        margin-left: 80%;
+        width: 80%; /* Expanded drawer width for small screens */
     }
 }
