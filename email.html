@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Section with Update Popup</title>
+    <link rel="stylesheet" href="email.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Master Table Section -->
+        <div class="master-table">
+            <h1>Master Table</h1>
+            <input type="text" id="searchInput" placeholder="Search emails..." onkeyup="filterEmails()" />
+            <table id="emailTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Meeting Update</td>
+                        <td>
+                            <button class="update-btn" onclick="showUpdatePopup(this)">Update</button>
+                            <button class="delete-btn" onclick="deleteEmail(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>Project Proposal</td>
+                        <td>
+                            <button class="update-btn" onclick="showUpdatePopup(this)">Update</button>
+                            <button class="delete-btn" onclick="deleteEmail(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Popup Card for Update -->
+        <div id="updatePopup" class="popup">
+            <div class="popup-content">
+                <h2>Update Email</h2>
+                <label for="updateName">Name:</label>
+                <input type="text" id="updateName" />
+                <label for="updateEmail">Email:</label>
+                <input type="email" id="updateEmail" />
+                <label for="updateSubject">Subject:</label>
+                <input type="text" id="updateSubject" />
+                <button onclick="closePopup()">Close</button>
+                <button onclick="saveUpdate()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="email.js"></script>
+</body>
+</html>

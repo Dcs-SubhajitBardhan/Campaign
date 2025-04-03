@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.master-table h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+
+th {
+    background-color: #1a6b9d;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #eaedd979;
+    cursor: pointer;
+}
+
+.update-btn, .delete-btn {
+    margin: 5px;
+    padding: 8px 15px; /* Slightly larger padding for better clickability */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth hover animation */
+}
+
+.update-btn {
+    width: 80px;
+    background: linear-gradient(135deg, #4CAF50, #3e8e41); /* Gradient green */
+    color: white;
+}
+
+.update-btn:hover {
+    background: linear-gradient(135deg, #3e8e41, #2e7032); /* Darker green on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow on hover */
+    transform: translateY(-3px); /* Lift effect */
+}
+
+.delete-btn {
+    width: 80px;
+    background: linear-gradient(135deg, #f44336, #d32f2f); /* Gradient red */
+    color: white;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c); /* Darker red on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow on hover */
+    transform: translateY(-3px); /* Lift effect */
+}
+
+.update-btn:active, .delete-btn:active {
+    box-shadow: none; /* Remove shadow when pressed */
+    transform: translateY(0); /* Button returns to normal position */
+}
+
+
+/* Popup Styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.popup-content button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    opacity: 0.9;
+}
