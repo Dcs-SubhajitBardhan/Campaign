@@ -102,39 +102,37 @@ body {
 
 /* Submenu Styling */
 .submenu {
-  display: none; /* Hidden by default */
-  background: var(--gradient-light); /* Soft gradient background */
-  padding: 10px 20px; /* Add padding for spacing */
-  border-left: 4px solid var(--accent-color); /* Highlighted border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: var(--shadow-sm); /* Subtle shadow for depth */
-  transition: background-color var(--transition-medium), transform var(--transition-medium);
-
-  /* Ensure items stack vertically */
-  display: block; /* Display block ensures stacking */
+    display: none; /* Hidden by default */
+    background: var(--gradient-light); /* Soft gradient background */
+    padding: 10px 20px; /* Add padding for spacing */
+    border-left: 4px solid var(--accent-color); /* Highlighted border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: var(--shadow-sm); /* Subtle shadow for depth */
+    transition: background-color var(--transition-medium), transform var(--transition-medium);
+    /* display: block; /* Remove this line to keep it hidden by default */
 }
 
 .submenu a {
-  display: block; /* Each link behaves as a block to stack vertically */
-  font-size: 1em;
-  color: white; /* Contrasting text color */
-  padding: 10px 15px;
-  margin-bottom: 5px; /* Adds spacing between items */
-  text-decoration: none; /* Removes underline */
-  border-bottom: 1px dashed var(--accent-color); /* Dashed separator */
-  transition: color var(--transition-fast), transform var(--transition-fast);
+    display: block; /* Each link behaves as a block to stack vertically */
+    font-size: 1em;
+    color: white; /* Contrasting text color */
+    padding: 10px 15px;
+    margin-bottom: 5px; /* Adds spacing between items */
+    text-decoration: none; /* Removes underline */
+    border-bottom: 1px dashed var(--accent-color); /* Dashed separator */
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 /* Hover Effects */
 .submenu:hover {
-  background: rgba(210, 206, 206, 0.385); /* Change background on hover */
-  transform: scale(1.02); /* Slight zoom effect */
+    background: rgba(210, 206, 206, 0.385); /* Change background on hover */
+    transform: scale(1.02); /* Slight zoom effect */
 }
 
 .submenu a:hover {
-  color: var(--submenue-color); /* Change text color on hover */
-  transform: translateX(10px); /* Slide-in effect for menu items */
-  border-bottom: 1px solid var(--primary-color); /* Solid separator on hover */
+    color: var(--submenue-color); /* Change text color on hover */
+    transform: translateX(10px); /* Slide-in effect for menu items */
+    border-bottom: 1px solid var(--primary-color); /* Solid separator on hover */
 }
 
 /* Open Button Styling */
