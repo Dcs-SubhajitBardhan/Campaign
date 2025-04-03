@@ -11,7 +11,7 @@
 /* Updated Variables */
 :root {
   --primary-color: #6de312;
-  --secondary-color: #70706d6f;
+  --secondary-color: #70706d25;
   --submenue-color: #efc84af9;
   --hover-color: #fcb045; /* New hover color (orange shade) */
   --menu-background-color: #8e44ad; /* New menu background color (purple shade) */
@@ -55,7 +55,7 @@ body {
     padding: 15px 30px;
     z-index: 1000;
     box-shadow: var(--shadow-md);
-    border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+    border-radius: 0 0 10px 0px; /* Rounded corners at the bottom */
 }
 
 .navbar-brand {
@@ -75,7 +75,7 @@ body {
     height: 100%;
     width: 0;
     position: fixed;
-    top: 51px; /* Below the navbar */
+    top: 69px; /* Below the navbar */
     left: 0;
     background: var(--gradient-dark);
     color: white;
