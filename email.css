@@ -279,16 +279,14 @@ body {
         gap: 10px;
     }
 
-    .upload-select {
-        /* ... other styles ... */
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: url('./arrow.png'); /* Or your correct path */
-        background-repeat: no-repeat;
-        /* Adjust the left value of background-position to create space */
-        background-position: right 30px center; /* Increased from 10px */
-        padding-right: 50px; /* Increased to accommodate the spacing */
+    .upload-select::after {
+        content: " ▼"; /* Add a dropdown arrow */
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        pointer-events: none;
     }
 
     #searchInput {
@@ -326,4 +324,117 @@ body {
     }
 
     /* You might want to increase font sizes or padding slightly here if needed */
+}
+
+
+/* Style for the bulk upload popup */
+.bulk-upload-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* White background */
+    padding: 30px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    z-index: 1000;
+    width: 400px; /* Set a fixed width for better structure */
+    max-width: 90%; /* Ensure responsiveness on smaller screens */
+}
+
+.bulk-upload-popup-content {
+    text-align: center;
+}
+
+.bulk-upload-popup h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.bulk-upload-popup label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+.bulk-upload-popup input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Prevent padding from increasing the input width */
+}
+
+.bulk-upload-popup .popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.bulk-upload-popup button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.bulk-upload-popup button:first-child {
+    background-color: #f44336; /* Cancel button color */
+    color: white;
+}
+
+.bulk-upload-popup button:first-child:hover {
+    background-color: #d32f2f;
+}
+
+.bulk-upload-popup button:last-child {
+    background-color: #007bff; /* Upload button color */
+    color: white;
+}
+
+.bulk-upload-popup button:last-child:hover {
+    background-color: #0056b3;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    z-index: 999;
+}
+.bulk-upload-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.bulk-upload-popup-header h2 {
+    margin: 0;
+}
+
+.close-button {
+    font-size: 24px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+}
+
+.close-button:hover {
+    color: #333;
 }
