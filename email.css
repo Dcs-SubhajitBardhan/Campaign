@@ -1,135 +1,329 @@
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     margin: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.navbar {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.navbar span {
+    font-weight: bold;
+}
+
+.open-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
     padding: 0;
-    background-color: #f4f4f9;
+}
+
+.open-btn img {
+    width: 30px;
+    height: auto;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.drawer.open {
+    left: 0;
+}
+
+.drawer a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.drawer a:hover {
+    background-color: #f2f2f2;
+}
+
+.submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.submenu.open {
+    display: block;
 }
 
 .container {
-    width: 90%;
-    margin: 20px auto;
+    width: 70%; /* Take 70% of the viewport width */
+    margin: 20px auto; /* Center the container horizontally with some top/bottom margin */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between the card and the popup */
 }
 
-.master-table h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.master-table-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+.card-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.upload-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.upload-select {
+    padding: 10px 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('arrow-down.png'); /* Ensure this path is correct */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
 }
 
-table {
+.upload-select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+#searchInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+#emailTable {
     width: 100%;
     border-collapse: collapse;
 }
 
-table, th, td {
-    border: 1px solid #ccc;
-}
-
-th, td {
-    text-align: left;
+#emailTable th, #emailTable td {
     padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
 }
 
-th {
-    background-color: #1a6b9d;
-    color: white;
-}
-
-tr:nth-child(even) {
+#emailTable th {
     background-color: #f2f2f2;
+    font-weight: bold;
 }
 
-tr:hover {
-    background-color: #eaedd979;
-    cursor: pointer;
+#emailTable tbody tr:hover {
+    background-color: #f9f9f9;
 }
 
 .update-btn, .delete-btn {
-    margin: 5px;
-    padding: 8px 15px; /* Slightly larger padding for better clickability */
+    padding: 8px 12px;
+    margin-right: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: all 0.3s ease; /* Smooth hover animation */
 }
 
 .update-btn {
-    width: 80px;
-    background: linear-gradient(135deg, #4CAF50, #3e8e41); /* Gradient green */
+    background-color: #28a745;
     color: white;
-}
-
-.update-btn:hover {
-    background: linear-gradient(135deg, #3e8e41, #2e7032); /* Darker green on hover */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow on hover */
-    transform: translateY(-3px); /* Lift effect */
 }
 
 .delete-btn {
-    width: 80px;
-    background: linear-gradient(135deg, #f44336, #d32f2f); /* Gradient red */
+    background-color: #dc3545;
     color: white;
 }
 
-.delete-btn:hover {
-    background: linear-gradient(135deg, #d32f2f, #b71c1c); /* Darker red on hover */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow on hover */
-    transform: translateY(-3px); /* Lift effect */
-}
-
-.update-btn:active, .delete-btn:active {
-    box-shadow: none; /* Remove shadow when pressed */
-    transform: translateY(0); /* Button returns to normal position */
-}
-
-
-/* Popup Styling */
 .popup {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    z-index: 1000;
-    padding: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
 }
 
 .popup-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
 }
 
-.popup-content input {
-    padding: 10px;
+.popup-content h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.popup-content input[type="text"],
+.popup-content input[type="email"] {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.popup-content button {
-    padding: 10px;
+.popup-buttons {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.popup-buttons button {
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
 }
 
-.popup-content button:hover {
-    opacity: 0.9;
+.popup-buttons button:first-child {
+    background-color: #6c757d;
+    color: white;
+}
+
+.popup-buttons button:last-child {
+    background-color: #007bff;
+    color: white;
+}
+/* Media Query for 768px (Typical for tablets) */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Take up more width on smaller screens */
+        margin: 15px auto;
+        padding: 15px;
+    }
+
+    .card-header {
+        flex-direction: column; /* Stack header elements */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .table-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .upload-select {
+        /* ... other styles ... */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('./arrow.png'); /* Or your correct path */
+        background-repeat: no-repeat;
+        /* Adjust the left value of background-position to create space */
+        background-position: right 30px center; /* Increased from 10px */
+        padding-right: 50px; /* Increased to accommodate the spacing */
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    #emailTable th, #emailTable td {
+        font-size: 14px; /* Slightly smaller text */
+        padding: 8px;
+    }
+
+    .update-btn, .delete-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .popup-content {
+        width: 90%;
+    }
+}
+
+/* Media Query for 1080px (Common for smaller laptops/larger tablets) */
+@media (max-width: 1080px) and (min-width: 769px) {
+    .container {
+        width: 80%; /* Adjust container width */
+    }
+
+    /* You might want to adjust font sizes or padding slightly here if needed */
+}
+
+/* Media Query for 1440px (Common for larger laptops/desktops) */
+@media (min-width: 1081px) and (max-width: 1440px) {
+    .container {
+        width: 80%; /* Optionally narrow the container on larger screens */
+    }
+
+    /* You might want to increase font sizes or padding slightly here if needed */
 }
