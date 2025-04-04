@@ -4,8 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="templatecontent.css">
 </head>
 <body>
-    <h1>Template Content</h1>
+    <div class="container">
+        <h1>Template Management</h1>
+
+        <!-- Template Structure Card -->
+        <div class="card">
+            <h2>Template Structure</h2>
+            <div class="field">
+                <label for="structure-name">Structure Name</label>
+                <input type="text" id="structure-name" placeholder="Enter structure name">
+            </div>
+            <div class="field">
+                <label for="structure-description">Description</label>
+                <textarea id="structure-description" placeholder="Enter structure description"></textarea>
+            </div>
+            <div class="buttons">
+                <button onclick="saveStructure()">Save</button>
+                <button onclick="updateStructure()">Update</button>
+                <button onclick="clearStructure()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Template Content Card -->
+        <div class="card">
+            <h2>Template Content</h2>
+            <div class="field">
+                <label for="content-name">Content Name</label>
+                <input type="text" id="content-name" placeholder="Enter content name">
+            </div>
+            <div class="field">
+                <label for="content-description">Content Description</label>
+                <textarea id="content-description" placeholder="Enter content description"></textarea>
+            </div>
+            <div class="buttons">
+                <button onclick="saveContent()">Save</button>
+                <button onclick="updateContent()">Update</button>
+                <button onclick="clearContent()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Functions to handle Save, Update, Clear actions
+
+        // For Template Structure
+        function saveStructure() {
+            alert('Template Structure Saved');
+            // Logic to save structure data
+        }
+
+        function updateStructure() {
+            alert('Template Structure Updated');
+            // Logic to update structure data
+        }
+
+        function clearStructure() {
+            document.getElementById('structure-name').value = '';
+            document.getElementById('structure-description').value = '';
+        }
+
+        // For Template Content
+        function saveContent() {
+            alert('Template Content Saved');
+            // Logic to save content data
+        }
+
+        function updateContent() {
+            alert('Template Content Updated');
+            // Logic to update content data
+        }
+
+        function clearContent() {
+            document.getElementById('content-name').value = '';
+            document.getElementById('content-description').value = '';
+        }
+    </script>
 </body>
 </html>
