@@ -1,0 +1,117 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Email Section */
+.email-section {
+    padding: 40px;
+    margin-top: 100px; /* 100px top margin */
+    width: 97%; /* Card width is 97% of the page width */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-left: auto; /* Center the card horizontally */
+    margin-right: auto;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* Email Card Style */
+.email-card {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Email Selection Dropdown */
+.email-selection {
+    margin-bottom: 20px;
+}
+
+.email-selection label {
+    font-size: 16px;
+    color: #555;
+    margin-right: 10px;
+}
+
+.email-selection select {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Selective Email Section (Textbox) */
+.selective-email-section {
+    margin-top: 20px;
+    display: none; /* Hidden by default */
+}
+
+.selective-email-section label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.selective-email-section textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    background-color: #f9f9f9;
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .email-section {
+        padding: 20px;
+    }
+
+    .email-selection select,
+    .selective-email-section textarea,
+    button {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
