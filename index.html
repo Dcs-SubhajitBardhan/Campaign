@@ -12,19 +12,20 @@
         <span>My Website</span>
     </div>
 
-   <!-- Drawer (hidden by default) -->
-   <div id="drawer" class="drawer">
-    <div class="drawer-content">
-        <h2>Drawer Menu</h2>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-        </ul>
-        
+    <div id="drawer" class="drawer">
+        <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
+        <div id="home-submenu" class="submenu">
+            <a href="phone.html">Phone</a>
+            <a href="email.html">Email</a>
+        </div>
+        <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
+        <div id="template-submenu" class="submenu">
+            
+            <a href="templatecontent.html">Template Content</a>
+        </div>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
     </div>
-</div>
 
     <script src="drawer.js"></script>
 </body>
