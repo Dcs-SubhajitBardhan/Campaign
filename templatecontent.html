@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="email.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="templatecontent.css">
 </head>
 <body>
+
+    <!-- Navbar with Menu Button -->
+    <div class="navbar">
+        <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
+        <span>My Website</span>
+    </div>
+
+    <!-- Drawer (hidden by default) -->
+    <div id="drawer" class="drawer">
+        <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
+        <div id="home-submenu" class="submenu">
+            <a href="phone.html">Phone</a>
+            <a href="email.html">Email</a>
+        </div>
+        <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
+        <div id="template-submenu" class="submenu">
+            <!-- s -->
+            <a href="templatecontent.html">Template Structure</a>
+        </div>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Main Content Area -->
     <div class="container">
         <h1>Template Management</h1>
 
@@ -54,12 +79,10 @@
         // For Template Structure
         function saveStructure() {
             alert('Template Structure Saved');
-            // Logic to save structure data
         }
 
         function updateStructure() {
             alert('Template Structure Updated');
-            // Logic to update structure data
         }
 
         function clearStructure() {
@@ -70,12 +93,10 @@
         // For Template Content
         function saveContent() {
             alert('Template Content Saved');
-            // Logic to save content data
         }
 
         function updateContent() {
             alert('Template Content Updated');
-            // Logic to update content data
         }
 
         function clearContent() {
@@ -83,5 +104,8 @@
             document.getElementById('content-description').value = '';
         }
     </script>
+
+    <!-- Link to external JS file (Drawer functionality) -->
+    <script src="drawer.js"></script>
 </body>
 </html>
