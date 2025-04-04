@@ -87,7 +87,7 @@ body {
     height: 100%;
     width: 0;
     position: fixed;
-    top: 69px; /* Below the navbar */
+    top: 80px; /* Below the navbar */
     left: 0;
     background: var(--gradient-dark);
     color: white;
