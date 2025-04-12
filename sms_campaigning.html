@@ -17,7 +17,7 @@
         <span>My Website</span>
     </div>
 
-    <!-- Drawer with submenus -->
+    <!-- Drawer -->
     <div id="drawer" class="drawer">
         <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
         <div id="home-submenu" class="submenu">
@@ -41,11 +41,11 @@
     </div>
 
     <!-- SMS Campaigning Section -->
-    <div class="email-section">
+    <div class="sms-section">
         <h2>SMS Campaigning</h2>
 
-        <div class="email-card">
-            <div class="email-selection">
+        <div class="sms-card">
+            <div class="sms-selection">
                 <!-- SMS Type Dropdown -->
                 <div class="form-group">
                     <label for="smsType">Choose SMS Type:</label>
@@ -58,7 +58,8 @@
                 <!-- Template Type Dropdown -->
                 <div class="form-group">
                     <label for="smsTemplate">Template Type:</label>
-                    <select id="smsTemplate">
+                    <select id="smsTemplate" onchange="handleTemplateChange()">
+                        <option value="" disabled selected>Select Template</option>
                         <option value="template1">Template 1</option>
                         <option value="template2">Template 2</option>
                         <option value="template3">Template 3</option>
@@ -72,13 +73,23 @@
                 <textarea id="smsNumbers" placeholder="Enter phone numbers here"></textarea>
             </div>
 
+            <!-- Input for Template Number -->
+            <div id="templateNumberSection" style="display: none;">
+                <label for="templateNumber" >Enter Template Number:</label>
+                <input type="number" id="templateNumber" placeholder="e.g., 100" onkeydown="handleEnterKey(event)" />
+            </div>
+
+            <!-- Template Numbers Display -->
+            <div id="templateValuesDisplay">
+                <!-- Entered numbers will appear here -->
+            </div>
+
             <!-- Submit Button -->
             <button onclick="submitSmsCampaign()">Submit Campaign</button>
         </div>
     </div>
 
     <!-- JS Scripts -->
-    <script src="drawer.js"></script>
     <script>
         // Show/hide textarea based on SMS type selection
         function toggleSmsInput() {
@@ -92,17 +103,71 @@
             }
         }
 
+        // Show input for template number based on template selection
+        function handleTemplateChange() {
+            const templateSelect = document.getElementById("smsTemplate");
+            const templateNumberSection = document.getElementById("templateNumberSection");
+
+            if (templateSelect.value) {
+                templateNumberSection.style.display = "block";
+            } else {
+                templateNumberSection.style.display = "none";
+            }
+        }
+
+        // Handle the Enter key press for adding numbers to the display
+        function handleEnterKey(event) {
+            // Check if the Enter key (key code 13) is pressed
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission if it's in a form
+
+                const numberInput = document.getElementById("templateNumber");
+                const number = numberInput.value;
+
+                if (number && !isNaN(number)) {
+                    // Create the number tag
+                    const tag = document.createElement("div");
+                    tag.className = "template-number";
+                    tag.innerHTML = `${number} <span class="remove-btn" onclick="removeNumberTag(this)">×</span>`;
+
+                    // Append the tag to the display section
+                    document.getElementById("templateValuesDisplay").appendChild(tag);
+
+                    // Clear the input field after adding the number
+                    numberInput.value = "";
+                }
+            }
+        }
+
+        // Remove the number tag
+        function removeNumberTag(span) {
+            const tag = span.parentElement;
+            tag.remove();
+        }
+
         // Submit logic for SMS campaign
         function submitSmsCampaign() {
             const smsType = document.getElementById("smsType").value;
+            const selectedTemplate = document.getElementById("smsTemplate").value || "None";
+            const selectedNumbers = document.getElementsByClassName("template-number");
+
+            let numbers = [];
+            for (let i = 0; i < selectedNumbers.length; i++) {
+                numbers.push(selectedNumbers[i].textContent.replace('×', '').trim());
+            }
 
             if (smsType === "all") {
-                alert("Submitting campaign to all numbers.");
+                alert(`Submitting campaign to ALL numbers\nTemplate: ${selectedTemplate}\nNumbers: ${numbers.join(', ')}`);
             } else {
-                const numbers = document.getElementById("smsNumbers").value;
-                alert("Submitting campaign to selected numbers: " + numbers);
+                const numbersInput = document.getElementById("smsNumbers").value;
+                alert(`Submitting campaign to SELECTED numbers:\n${numbersInput}\nTemplate: ${selectedTemplate}\nNumbers: ${numbers.join(', ')}`);
             }
         }
+        function toggleDrawer() {
+      const drawer = document.getElementById('drawer');
+      drawer.classList.toggle('open');
+  }
+
     </script>
 
 </body>
