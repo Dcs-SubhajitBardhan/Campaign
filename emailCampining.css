@@ -1,4 +1,4 @@
-/* ===========================
+/* ==========================
    General Page Styling
 =========================== */
 body {
@@ -8,8 +8,8 @@ body {
     padding: 0;
 }
 
-/* ===========================
-   Section Container
+/* ==========================
+   Email Section Container
 =========================== */
 .email-section {
     padding: 40px;
@@ -22,7 +22,7 @@ body {
     margin-right: auto;
 }
 
-/* ===========================
+/* ==========================
    Heading
 =========================== */
 h2 {
@@ -32,8 +32,8 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* ===========================
-   Email Card
+/* ==========================
+   Email Card Styling
 =========================== */
 .email-card {
     background-color: #f9f9f9;
@@ -43,7 +43,7 @@ h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* ===========================
+/* ==========================
    Email Selection Layout
 =========================== */
 .email-selection {
@@ -60,7 +60,7 @@ h2 {
     flex: 1;
 }
 
-/* ===========================
+/* ==========================
    Labels & Dropdowns
 =========================== */
 .email-selection label {
@@ -81,7 +81,7 @@ h2 {
     display: block;
 }
 
-/* ===========================
+/* ==========================
    Selected Templates Styling
 =========================== */
 .selected-templates {
@@ -102,7 +102,7 @@ h2 {
     padding: 5px 5px;
     font-size: 12px;
     display: flex;
-    align-items: start;
+    align-items: center;
 }
 
 .template-tag .remove-btn {
@@ -112,8 +112,8 @@ h2 {
     font-weight: bold;
 }
 
-/* ===========================
-   Selective Email Input
+/* ==========================
+   Selective Email Input Styling
 =========================== */
 .selective-email-section {
     margin-top: 20px;
@@ -138,7 +138,7 @@ h2 {
     background-color: #f9f9f9;
 }
 
-/* ===========================
+/* ==========================
    Button Styling
 =========================== */
 button {
@@ -158,7 +158,7 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* ===========================
+/* ==========================
    Responsive Design
 =========================== */
 
@@ -223,7 +223,6 @@ button:hover {
     }
 
     .email-selection select {
-        
         max-width: 100%;
     }
 }
@@ -235,17 +234,14 @@ button:hover {
     }
 
     .email-selection {
-        
         flex-wrap: wrap;
     }
 
     .email-selection > div {
-        
-        flex: 1 1 48%;  /* Two items side by side */
+        flex: 1 1 48%; /* Two items side by side */
     }
 
     .selective-email-section {
-        margin-top: 50px;
         margin-top: 20px;
     }
 }
