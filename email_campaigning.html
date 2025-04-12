@@ -43,29 +43,42 @@
     <!-- Email Section with Selective Email Feature -->
     <div class="email-section">
         <h2>Email Campaigning</h2>
-
+    
         <!-- Card View for the Email Section -->
         <div class="email-card">
-            <div class="email-selection">
+            <div class="email-selection" style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
                 <!-- Dropdown for Select All Emails or Selective Emails -->
-                <label for="emailType">Choose EmailType:</label>
-                <select id="emailType" onchange="toggleEmailInput()">
-                    <option value="all">All Email</option>
-                    <option value="selective">Selective Email</option>
-                </select>
+                <div style="flex: 1;">
+                    <label for="emailType">Choose EmailType:</label><br>
+                    <select id="emailType" onchange="toggleEmailInput()">
+                        <option value="all">All Email</option>
+                        <option value="selective">Selective Email</option>
+                    </select>
+                </div>
+        
+                <!-- Template Dropdown -->
+                <div style="flex: 1;">
+                    <label for="templateSelect">Select Template:</label><br>
+                    <select id="templateSelect">
+                        <option value="template1">Template 1</option>
+                        <option value="template2">Template 2</option>
+                        <option value="template3">Template 3</option>
+                    </select>
+                </div>
             </div>
-
+        
             <!-- Email Textarea Section for Selective Emails -->
             <div class="selective-email-section" style="display:none;">
-                <!-- Textbox for Selective Emails -->
                 <label for="emails">Enter Number (comma separated):</label>
-                <textarea id="emails" placeholder="Enter Phone Number  here"></textarea>
+                <textarea id="emails" placeholder="Enter Email here"></textarea>
             </div>
-
+        
             <!-- Email action buttons -->
             <button onclick="submitEmailCampaign()">Submit Campaign</button>
         </div>
+        
     </div>
+    
 
     <!-- Drawer JS for toggling the drawer visibility -->
     <script src="drawer.js"></script>

@@ -1,66 +1,87 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 /* Email Section */
 .email-section {
     padding: 40px;
     margin-top: 100px; /* 100px top margin */
-    width: 97%; /* Card width is 97% of the page width */
+    width: 90%; /* Adjust width to 90% for better responsiveness */
+    max-width: 1200px; /* Max width to avoid too large a layout on very wide screens */
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-left: auto; /* Center the card horizontally */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-left: auto;
     margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.email-section:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Heading */
 h2 {
     text-align: center;
     color: #333;
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* Email Card Style */
 .email-card {
     background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Email Selection Dropdown */
 .email-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
+/* Dropdown Styling */
 .email-selection label {
     font-size: 16px;
     color: #555;
-    margin-right: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .email-selection select {
     font-size: 16px;
     padding: 12px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     background-color: #fff;
     width: 100%;
     max-width: 300px;
     display: block;
-    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.email-selection select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 /* Selective Email Section (Textbox) */
 .selective-email-section {
     margin-top: 20px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .selective-email-section label {
@@ -68,6 +89,7 @@ h2 {
     color: #555;
     margin-bottom: 10px;
     display: block;
+    font-weight: 500;
 }
 
 .selective-email-section textarea {
@@ -75,10 +97,17 @@ h2 {
     height: 150px;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 5px;
     resize: none;
     background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.selective-email-section textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
 /* Submit Button */
@@ -93,10 +122,17 @@ button {
     cursor: pointer;
     margin-top: 20px;
     display: block;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Button Active State */
+button:active {
+    transform: translateY(1px);
 }
 
 /* Responsive Design for Mobile */
@@ -109,6 +145,19 @@ button:hover {
     .selective-email-section textarea,
     button {
         font-size: 14px;
+    }
+
+    .email-selection {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .email-selection label {
+        margin-bottom: 6px;
+    }
+
+    .email-selection select {
+        max-width: 100%;
     }
 
     button {
