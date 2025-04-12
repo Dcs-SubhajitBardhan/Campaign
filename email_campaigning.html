@@ -7,7 +7,6 @@
   <title>Email Campaigning</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="emailCampining.css" />
-
   
 </head>
 
@@ -93,7 +92,7 @@
   <script>
     function toggleDrawer() {
       const drawer = document.getElementById('drawer');
-      drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block';
+      drawer.classList.toggle('open'); // Toggle the 'open' class to slide the drawer in and out
     }
 
     function toggleSubMenu(id) {
