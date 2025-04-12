@@ -2,22 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Section with Selective Email Input</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="emailCampining.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="emailCampining.css" />
+    <style>
+        .email-selection {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .template-tag {
+            background-color: #e1f0ff;
+            padding: 6px 12px;
+            border-radius: 16px;
+            margin: 5px 0;
+            display: inline-block;
+            font-size: 14px;
+            border: 1px solid #4a90e2;
+        }
+
+        .remove-btn {
+            color: #d00;
+            font-weight: bold;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .selected-templates {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .selective-email-section {
+            margin-top: 20px;
+        }
+
+        .email-card {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Navbar with menu toggle -->
+    <!-- Navbar -->
     <div class="navbar">
         <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
         <span>My Website</span>
     </div>
 
-    <!-- Drawer with submenus -->
+    <!-- Drawer -->
     <div id="drawer" class="drawer">
         <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
         <div id="home-submenu" class="submenu">
@@ -40,74 +96,96 @@
         <a href="#">Contact</a>
     </div>
 
-    <!-- Email Section with Selective Email Feature -->
+    <!-- Email Section -->
     <div class="email-section">
         <h2>Email Campaigning</h2>
-    
-        <!-- Card View for the Email Section -->
+
         <div class="email-card">
-            <div class="email-selection" style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
-                <!-- Dropdown for Select All Emails or Selective Emails -->
+            <div class="email-selection">
+                <!-- Email Type -->
                 <div style="flex: 1;">
-                    <label for="emailType">Choose EmailType:</label><br>
+                    <label for="emailType">Choose Email Type:</label><br />
                     <select id="emailType" onchange="toggleEmailInput()">
                         <option value="all">All Email</option>
                         <option value="selective">Selective Email</option>
                     </select>
                 </div>
-        
+
                 <!-- Template Dropdown -->
                 <div style="flex: 1;">
-                    <label for="templateSelect">Select Template:</label><br>
-                    <select id="templateSelect">
-                        <option value="template1">Template 1</option>
-                        <option value="template2">Template 2</option>
-                        <option value="template3">Template 3</option>
+                    <label for="templateSelect">Select Template:</label><br />
+                    <select id="templateSelect" onchange="addTemplateTag()">
+                        <option value="" disabled selected>Select Template</option>
+                        <option value="Template 1">Template 1</option>
+                        <option value="Template 2">Template 2</option>
+                        <option value="Template 3">Template 3</option>
                     </select>
                 </div>
+
+                <!-- Selected Templates -->
+                <div id="selectedTemplates" class="selected-templates" style="flex: 3;">
+                    <!-- Tags go here -->
+                </div>
             </div>
-        
-            <!-- Email Textarea Section for Selective Emails -->
-            <div class="selective-email-section" style="display:none;">
-                <label for="emails">Enter Number (comma separated):</label>
-                <textarea id="emails" placeholder="Enter Email here"></textarea>
+
+            <!-- Conditional Email Input -->
+            <div class="selective-email-section" style="display: none;">
+                <label for="emails">Enter Emails (comma separated):</label>
+                <textarea id="emails" placeholder="Enter email addresses here..."></textarea>
             </div>
-        
-            <!-- Email action buttons -->
+
+            <!-- Submit Button -->
             <button onclick="submitEmailCampaign()">Submit Campaign</button>
         </div>
-        
     </div>
-    
 
-    <!-- Drawer JS for toggling the drawer visibility -->
+    <!-- Drawer Toggle Script -->
     <script src="drawer.js"></script>
 
-    <!-- JavaScript to handle the visibility of input sections and form submission -->
+    <!-- Core Script -->
     <script>
-        // Function to toggle email input visibility based on dropdown selection
         function toggleEmailInput() {
             const emailType = document.getElementById("emailType").value;
             const selectiveEmailSection = document.querySelector(".selective-email-section");
-
-            // If "Selective Emails" is selected, show the text input section
-            if (emailType === "selective") {
-                selectiveEmailSection.style.display = "block"; // Show input box for selective emails
-            } else {
-                selectiveEmailSection.style.display = "none";  // Hide input box for all emails
-            }
+            selectiveEmailSection.style.display = emailType === "selective" ? "block" : "none";
         }
 
-        // Submit email campaign logic (this can be expanded to include real email sending logic)
         function submitEmailCampaign() {
             const emailType = document.getElementById("emailType").value;
-
             if (emailType === "all") {
                 alert("Submitting campaign to all emails.");
             } else {
                 const emails = document.getElementById("emails").value;
                 alert("Submitting campaign to selected emails: " + emails);
             }
+        }
+
+        function addTemplateTag() {
+            const select = document.getElementById("templateSelect");
+            const selectedValue = select.value;
+            const selectedTemplates = document.getElementById("selectedTemplates");
+
+            if (!selectedValue) return; // Do nothing if no template is selected
+
+            // Clear any existing tags (to ensure only one template is selected)
+            selectedTemplates.innerHTML = "";
+
+            // Create the new tag
+            const tag = document.createElement("div");
+            tag.className = "template-tag";
+            tag.dataset.template = selectedValue;
+            tag.innerHTML = `${selectedValue} <span class="remove-btn" onclick="removeTemplateTag(this)">×</span>`;
+
+            // Append the new tag
+            selectedTemplates.appendChild(tag);
+
+            // Reset dropdown (to show "Select Template" again)
+            select.selectedIndex = 0;
+        }
+
+        function removeTemplateTag(span) {
+            const tag = span.parentElement;
+            tag.remove();
         }
     </script>
 

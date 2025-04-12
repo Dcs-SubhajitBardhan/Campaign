@@ -1,51 +1,73 @@
-/* General Styling */
+/* ===========================
+   General Page Styling
+=========================== */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Email Section */
+/* ===========================
+   Section Container
+=========================== */
 .email-section {
     padding: 40px;
-    margin-top: 100px; /* 100px top margin */
-    width: 97%; /* Card width is 97% of the page width */
+    margin-top: 100px;
+    width: 97%;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin-left: auto; /* Center the card horizontally */
+    margin-left: auto;
     margin-right: auto;
-    max-width: 1200px; /* Limit the width on larger screens */
 }
 
-/* Heading */
+/* ===========================
+   Heading
+=========================== */
 h2 {
     text-align: center;
     color: #333;
     font-size: 24px;
     margin-bottom: 30px;
-    font-weight: 600;
 }
 
-/* Email Card Style */
+/* ===========================
+   Email Card
+=========================== */
 .email-card {
     background-color: #f9f9f9;
     padding: 30px;
+    max-width: 90%;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Email Selection Dropdown */
+/* ===========================
+   Email Selection Layout
+=========================== */
 .email-selection {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    min-height: 30px;
 }
 
+.email-selection > div {
+    flex: 1;
+}
+
+/* ===========================
+   Labels & Dropdowns
+=========================== */
 .email-selection label {
     font-size: 16px;
     color: #555;
-    margin-right: 10px;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .email-selection select {
@@ -55,21 +77,47 @@ h2 {
     border: 1px solid #ccc;
     background-color: #fff;
     width: 100%;
-    max-width: 350px;
+    max-width: 100%;
     display: block;
-    margin-top: 10px;
-    transition: border-color 0.3s ease;
 }
 
-.email-selection select:focus {
-    border-color: #3498db;
-    outline: none;
+/* ===========================
+   Selected Templates Styling
+=========================== */
+.selected-templates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: #f0f0f0;
+    padding: 5px;
+    margin-top: 60px;
+    border-radius: 5px;
+    min-height: 25px;
+    align-items: start;
 }
 
-/* Selective Email Section (Textbox) */
+.template-tag {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: start;
+}
+
+.template-tag .remove-btn {
+    margin-left: 8px;
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ===========================
+   Selective Email Input
+=========================== */
 .selective-email-section {
     margin-top: 20px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .selective-email-section label {
@@ -88,15 +136,11 @@ h2 {
     border-radius: 5px;
     resize: none;
     background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
 }
 
-.selective-email-section textarea:focus {
-    border-color: #3498db;
-    outline: none;
-}
-
-/* Submit Button */
+/* ===========================
+   Button Styling
+=========================== */
 button {
     width: 100%;
     padding: 15px;
@@ -108,22 +152,30 @@ button {
     cursor: pointer;
     margin-top: 20px;
     display: block;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #2980b9;
 }
 
-/* Responsive Design for Mobile */
+/* ===========================
+   Responsive Design
+=========================== */
+
+/* For devices 768px and below (Tablets, Mobile Portraits, etc.) */
 @media (max-width: 768px) {
     .email-section {
         padding: 20px;
+        margin-top: 60px;
     }
 
-    h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
+    .email-selection {
+        display: block;
+        gap: 15px;
+    }
+
+    .email-selection > div {
+        flex: 1 1 100%;
     }
 
     .email-selection select,
@@ -135,24 +187,65 @@ button:hover {
     button {
         padding: 12px;
     }
-}
-
-/* Responsive Design for Tablets and Smaller Screens */
-@media (max-width: 1024px) {
-    .email-selection select {
-        max-width: 300px;
-    }
-
-    .email-section {
-        width: 90%;
-    }
 
     h2 {
         font-size: 22px;
-        margin-bottom: 25px;
     }
 
-    .email-card {
-        padding: 25px;
+    .selected-templates {
+        margin-top: 40px;
+    }
+}
+
+/* For devices 1080px and below (Small Desktops, Laptops, etc.) */
+@media (max-width: 1080px) {
+    .email-selection {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .email-selection > div {
+        flex: 1;
+    }
+
+    .email-section {
+        width: 95%;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .email-selection select {
+        
+        max-width: 100%;
+    }
+}
+
+/* For devices between 768px and 1080px (Medium Devices) */
+@media (min-width: 768px) and (max-width: 1080px) {
+    .email-section {
+        padding: 30px;
+    }
+
+    .email-selection {
+        
+        flex-wrap: wrap;
+    }
+
+    .email-selection > div {
+        
+        flex: 1 1 48%;  /* Two items side by side */
+    }
+
+    .selective-email-section {
+        margin-top: 50px;
+        margin-top: 20px;
     }
 }
