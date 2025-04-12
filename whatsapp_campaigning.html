@@ -4,20 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Section with Selective Email Input</title>
+    <title>WhatsApp Campaigning</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="whatsappCampining.css">
 </head>
 
 <body>
 
-    <!-- Navbar with menu toggle -->
     <div class="navbar">
         <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
         <span>My Website</span>
     </div>
 
-    <!-- Drawer with submenus -->
     <div id="drawer" class="drawer">
         <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
         <div id="home-submenu" class="submenu">
@@ -40,70 +38,121 @@
         <a href="#">Contact</a>
     </div>
 
-    <!-- Email Section with Selective Email Feature -->
     <div class="email-section">
-        <h2>What'sApp Campaigning</h2>
+        <h2>WhatsApp Campaigning</h2>
 
-        <!-- Card View for the Email Section -->
         <div class="email-card">
             <div class="email-selection">
-                <!-- Dropdown for Select All Emails or Selective Emails -->
-                <label for="emailType">Choose What'sApp Type:</label>
+                <label for="emailType">Choose WhatsApp Type:</label>
                 <select id="emailType" onchange="toggleEmailInput()">
-                    <option value="all">All What's App</option>
-                    <option value="selective">Selective What's App</option>
+                    <option value="all">All WhatsApp</option>
+                    <option value="selective">Selective WhatsApp</option>
                 </select>
 
-
-
-                
                 <label for="templateType">Choose Template:</label>
-                <select id="templateType">
+                <select id="templateType" onchange="toggleTemplateInput()">
+                    <option value="">Select Template</option>
                     <option value="template1">Template 1</option>
                     <option value="template2">Template 2</option>
                     <option value="template3">Template 3</option>
                 </select>
             </div>
 
-            <!-- Email Textarea Section for Selective Emails -->
             <div class="selective-email-section" style="display:none;">
-                <!-- Textbox for Selective Emails -->
-                <label for="emails">Enter What's App Number (comma separated):</label>
-                <textarea id="emails" placeholder="Enter email addresses here"></textarea>
+                <label for="emails">Enter WhatsApp Numbers (comma separated):</label>
+                <textarea id="emails" placeholder="Enter WhatsApp numbers here"></textarea>
             </div>
 
-            <!-- Email action buttons -->
+            <div class="template-value-section" id="templateValueSection" style="display:none;">
+                <label for="templateValue">Enter Value for Selected Template:</label>
+                <input type="text" id="templateValue" placeholder="Enter your string here" onkeydown="handleEnter(event)">
+            </div>
+
+            <!-- Section to show entered values with a cross button -->
+            <div id="templateValuesDisplay" class="template-values-display"></div>
+
             <button onclick="submitEmailCampaign()">Submit Campaign</button>
         </div>
     </div>
 
-    <!-- Drawer JS for toggling the drawer visibility -->
     <script src="drawer.js"></script>
 
-    <!-- JavaScript to handle the visibility of input sections and form submission -->
     <script>
-        // Function to toggle email input visibility based on dropdown selection
         function toggleEmailInput() {
             const emailType = document.getElementById("emailType").value;
             const selectiveEmailSection = document.querySelector(".selective-email-section");
 
-            // If "Selective Emails" is selected, show the text input section
             if (emailType === "selective") {
-                selectiveEmailSection.style.display = "block"; // Show input box for selective emails
+                selectiveEmailSection.style.display = "block";
             } else {
-                selectiveEmailSection.style.display = "none";  // Hide input box for all emails
+                selectiveEmailSection.style.display = "none";
             }
         }
 
-        // Submit email campaign logic (this can be expanded to include real email sending logic)
+        function toggleTemplateInput() {
+            const templateType = document.getElementById("templateType").value;
+            const templateValueSection = document.getElementById("templateValueSection");
+
+            if (templateType !== "") {
+                templateValueSection.style.display = "block";
+            } else {
+                templateValueSection.style.display = "none";
+            }
+        }
+
+        // Function to handle "Enter" key press in the template value input
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission (if inside a form)
+                addTemplateValue();  // Call the function to add the value to the section
+            }
+        }
+
+        // Function to add the entered value to the display section
+        function addTemplateValue() {
+            const templateValue = document.getElementById("templateValue").value;
+            const templateValuesDisplay = document.getElementById("templateValuesDisplay");
+
+            if (templateValue !== "") {
+                // Create a new div to display the value with a cross button
+                const valueDiv = document.createElement("div");
+                valueDiv.classList.add("template-value-tag");
+
+                // Create the value text node
+                const valueText = document.createElement("span");
+                valueText.textContent = templateValue;
+                valueDiv.appendChild(valueText);
+
+                // Create the cross button to remove the value
+                const removeBtn = document.createElement("span");
+                removeBtn.textContent = "❌";
+                removeBtn.classList.add("remove-btn");
+                removeBtn.onclick = function () {
+                    valueDiv.remove();
+                };
+                valueDiv.appendChild(removeBtn);
+
+                // Append the new value div to the display section
+                templateValuesDisplay.appendChild(valueDiv);
+
+                // Clear the input field after adding the value
+                document.getElementById("templateValue").value = "";
+            }
+        }
+
         function submitEmailCampaign() {
             const emailType = document.getElementById("emailType").value;
+            const templateValue = document.getElementById("templateValue").value;
 
             if (emailType === "all") {
-                alert("Submitting campaign to all emails.");
+                alert("Submitting campaign to all WhatsApp users.");
             } else {
                 const emails = document.getElementById("emails").value;
-                alert("Submitting campaign to selected emails: " + emails);
+                alert("Submitting campaign to selected WhatsApp numbers: " + emails);
+            }
+
+            if (templateValue) {
+                alert("Using template value: " + templateValue);
             }
         }
     </script>
