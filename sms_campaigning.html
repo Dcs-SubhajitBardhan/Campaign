@@ -66,7 +66,7 @@
         </div>
 
         <div class="template-value-section" id="templateValueSection" style="display:none;">
-          <label for="templateValue">Enter Value for Selected Template:</label>
+          <label for="templateValue">Enter Value for Selected Template (e.g., a: 100):</label>
           <input type="text" id="templateValue" placeholder="Enter your string here" onkeydown="handleEnter(event)" />
         </div>
 
@@ -95,7 +95,7 @@
       templateValueSection.style.display = templateType !== "" ? "block" : "none";
     }
 
-    // Handle the Enter key to add a template value
+    // Handle the Enter key to add a template value in key-value format
     function handleEnter(event) {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -103,28 +103,40 @@
       }
     }
 
-    // Add the entered template value to the display area
+    // Add the entered template value to the display area and prepare for key-value object
     function addTemplateValue() {
       const templateValue = document.getElementById("templateValue").value;
       const display = document.getElementById("templateValuesDisplay");
 
       if (templateValue.trim() !== "") {
-        const valueDiv = document.createElement("div");
-        valueDiv.classList.add("template-value-tag");
+        // Split the entered value by the colon (":") to extract key and value
+        const parts = templateValue.split(":").map(part => part.trim());
 
-        const valueText = document.createElement("span");
-        valueText.textContent = templateValue;
-        valueDiv.appendChild(valueText);
+        // Ensure the format is correct (i.e., key and value are both provided)
+        if (parts.length === 2) {
+          const key = parts[0];
+          const value = parts[1];
 
-        const removeBtn = document.createElement("span");
-        removeBtn.textContent = "❌";
-        removeBtn.classList.add("remove-btn");
-        removeBtn.onclick = () => valueDiv.remove();
-        valueDiv.appendChild(removeBtn);
+          // Create the display element for the key-value pair
+          const valueDiv = document.createElement("div");
+          valueDiv.classList.add("template-value-tag");
 
-        display.appendChild(valueDiv);
-        document.getElementById("templateValue").value = ""; // Clear the input field after adding
+          const valueText = document.createElement("span");
+          valueText.textContent = `${key}: ${value}`;
+          valueDiv.appendChild(valueText);
+
+          const removeBtn = document.createElement("span");
+          removeBtn.textContent = "❌";
+          removeBtn.classList.add("remove-btn");
+          removeBtn.onclick = () => valueDiv.remove();
+          valueDiv.appendChild(removeBtn);
+
+          display.appendChild(valueDiv);
+        }
       }
+
+      // Clear the input field after adding
+      document.getElementById("templateValue").value = "";
     }
 
     // Submit the SMS campaign with the collected data
@@ -135,7 +147,10 @@
       const templateType = document.getElementById("templateType").value;
       const numbers = document.getElementById("numbers").value.trim();
 
-      // Collect all template values from the displayed tags (excluding the ones with the "❌" button)
+      // Create an object to store the key-value pairs (template value: "a: 100")
+      const templateValuesObject = {};
+
+      // Collect all template values from the displayed tags
       const templateValues = Array.from(document.querySelectorAll("#templateValuesDisplay .template-value-tag"))
         .map(tag => {
           const valueText = tag.querySelector("span"); // Get the text content inside the span
@@ -143,11 +158,21 @@
         })
         .filter(value => value.length > 0); // Filter out any empty values
 
+      // Parse the template values into an object (e.g., "a": "100")
+      templateValues.forEach(value => {
+        const parts = value.split(":").map(part => part.trim());
+        if (parts.length === 2) {
+          const key = parts[0];
+          const val = parts[1];
+          templateValuesObject[key] = val;
+        }
+      });
+
       // Create the data object to send
       const data = {
         smsType,
         templateType,
-        templateValues,  // Now templateValues are collected, only text content
+        templateValues: templateValuesObject,  // Send as a key-value object
         numbers
       };
 
