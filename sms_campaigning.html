@@ -45,8 +45,8 @@
 
       <div class="email-card">
         <div class="email-selection">
-          <label for="emailType">Choose SMS Type:</label>
-          <select id="emailType" onchange="toggleEmailInput()">
+          <label for="smsType">Choose SMS Type:</label>
+          <select id="smsType" onchange="toggleSMSInput()">
             <option value="all">All SMS</option>
             <option value="selective">Selective SMS</option>
           </select>
@@ -61,8 +61,8 @@
         </div>
 
         <div class="selective-email-section" style="display:none;">
-          <label for="emails">Enter SMS Numbers (comma separated):</label>
-          <textarea id="emails" placeholder="Enter SMS numbers here"></textarea>
+          <label for="numbers">Enter SMS Numbers (comma separated):</label>
+          <textarea id="numbers" placeholder="Enter SMS numbers here"></textarea>
         </div>
 
         <div class="template-value-section" id="templateValueSection" style="display:none;">
@@ -81,18 +81,21 @@
   <script src="drawer.js"></script>
 
   <script>
-    function toggleEmailInput() {
-      const emailType = document.getElementById("emailType").value;
-      const selectiveEmailSection = document.querySelector(".selective-email-section");
-      selectiveEmailSection.style.display = emailType === "selective" ? "block" : "none";
+    // Toggle the display of selective SMS input
+    function toggleSMSInput() {
+      const smsType = document.getElementById("smsType").value;
+      const selectiveSMSSection = document.querySelector(".selective-email-section");
+      selectiveSMSSection.style.display = smsType === "selective" ? "block" : "none";
     }
 
+    // Toggle the template value input section based on selected template
     function toggleTemplateInput() {
       const templateType = document.getElementById("templateType").value;
       const templateValueSection = document.getElementById("templateValueSection");
       templateValueSection.style.display = templateType !== "" ? "block" : "none";
     }
 
+    // Handle the Enter key to add a template value
     function handleEnter(event) {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -100,6 +103,7 @@
       }
     }
 
+    // Add the entered template value to the display area
     function addTemplateValue() {
       const templateValue = document.getElementById("templateValue").value;
       const display = document.getElementById("templateValuesDisplay");
@@ -119,27 +123,37 @@
         valueDiv.appendChild(removeBtn);
 
         display.appendChild(valueDiv);
-        document.getElementById("templateValue").value = "";
+        document.getElementById("templateValue").value = ""; // Clear the input field after adding
       }
     }
 
+    // Submit the SMS campaign with the collected data
     function submitSMSCampaign(event) {
       event.preventDefault();
 
-      const smsType = document.getElementById("emailType").value;
+      const smsType = document.getElementById("smsType").value;
       const templateType = document.getElementById("templateType").value;
-      const templateValue = document.getElementById("templateValue").value;
-      const numbers = document.getElementById("emails").value;
+      const numbers = document.getElementById("numbers").value.trim();
 
+      // Collect all template values from the displayed tags (excluding the ones with the "❌" button)
+      const templateValues = Array.from(document.querySelectorAll("#templateValuesDisplay .template-value-tag"))
+        .map(tag => {
+          const valueText = tag.querySelector("span"); // Get the text content inside the span
+          return valueText ? valueText.textContent.trim() : "";
+        })
+        .filter(value => value.length > 0); // Filter out any empty values
+
+      // Create the data object to send
       const data = {
         smsType,
         templateType,
-        templateValue,
+        templateValues,  // Now templateValues are collected, only text content
         numbers
       };
 
       console.log("📤 Sending SMS campaign data:", data);
 
+      // Send the data to the server via fetch
       fetch("http://localhost:3000/send-sms", {
         method: "POST",
         headers: {

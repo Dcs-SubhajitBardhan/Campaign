@@ -78,16 +78,19 @@
   <script src="drawer.js"></script>
 
   <script>
+    // Toggle display of selective email input
     function toggleEmailInput() {
       const emailType = document.getElementById("emailType").value;
       document.querySelector(".selective-email-section").style.display = emailType === "selective" ? "block" : "none";
     }
 
+    // Toggle the template value input section display based on the selected template
     function toggleTemplateInput() {
       const templateType = document.getElementById("templateType").value;
       document.getElementById("templateValueSection").style.display = templateType !== "" ? "block" : "none";
     }
 
+    // Handle the Enter key to add a template value
     function handleEnter(event) {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -95,11 +98,12 @@
       }
     }
 
+    // Add the template value to the display area
     function addTemplateValue() {
-      const templateValue = document.getElementById("templateValue").value;
+      const templateValue = document.getElementById("templateValue").value.trim();
       const display = document.getElementById("templateValuesDisplay");
 
-      if (templateValue.trim() !== "") {
+      if (templateValue !== "") {
         const valueDiv = document.createElement("div");
         valueDiv.classList.add("template-value-tag");
 
@@ -114,28 +118,38 @@
         valueDiv.appendChild(removeBtn);
 
         display.appendChild(valueDiv);
-        document.getElementById("templateValue").value = "";
+        document.getElementById("templateValue").value = ""; // Clear input field after adding
       }
     }
 
+    // Submit the email campaign with the collected data
     function submitEmailCampaign(event) {
       event.preventDefault();
 
       const emailType = document.getElementById("emailType").value;
       const templateType = document.getElementById("templateType").value;
-      const templateValue = document.getElementById("templateValue").value;
-      const emails = document.getElementById("emails").value;
+      const emails = document.getElementById("emails").value.trim();
 
+      // Collect all template values from the displayed tags (excluding the remove button "❌")
+      const templateValues = Array.from(document.querySelectorAll("#templateValuesDisplay .template-value-tag"))
+        .map(tag => {
+          const valueText = tag.querySelector("span"); // Get the span that holds the value
+          return valueText ? valueText.textContent.trim() : "";
+        })
+        .filter(value => value.length > 0); // Filter out any empty values
+
+      // Create the data object to send
       const data = {
         emailType,
         templateType,
-        templateValue,
+        templateValues,  // Now templateValues are collected, only text content
         emails
       };
 
-      // ✅ Log the exact object before sending
+      // Log the data to verify before sending
       console.log("📤 Sending to server:", data);
 
+      // Send the data to the server via fetch
       fetch("http://192.168.0.162:8000", {
         method: "POST",
         headers: {
@@ -154,6 +168,7 @@
         });
     }
   </script>
+
 </body>
 
 </html>
