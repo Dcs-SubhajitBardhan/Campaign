@@ -1,43 +1,91 @@
 /* ==========================
-   General Reset & Styling
+   General Reset & Body Styling
 ========================== */
 body {
-    
-    padding: 0;
     margin: 45px;
     margin-top: 100px;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9; /* Slightly lighter background */
+    background-color: #f9f9f9;
 }
 
 /* ==========================
-   SMS Section Container
+   Navbar Styling
 ========================== */
-.sms-selection {
-    
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #3498db;
+    color: white;
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 999;
 }
 
-.sms-selection .form-group {
-    flex: 1 1 90%px; /* Each takes minimum 300px but grows */
+.navbar img.open-btn {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    cursor: pointer;
 }
 
-/* ==========================
-   Section Title
-========================== */
-.sms-section h2 {
-    text-align: center;
-    font-size: 30px; /* Slightly larger title */
-    color: #fffefe;
-    margin-bottom: 40px; /* Increased margin for spacing */
+.navbar span {
+    font-size: 20px;
     font-weight: bold;
 }
+/* Inline fixes just in case external CSS doesn't load */
+.drawer {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(51, 51, 51, 0.9);
+    color: white;
+    padding-top: 50px;
+    z-index: 1000;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .drawer.open {
+    transform: translateX(0);
+  }
+
+  .submenu {
+    display: none;
+    padding-left: 20px;
+  }
+
+  .submenu.active {
+    display: block;
+  }
 
 /* ==========================
-   SMS Card Layout
+   SMS Section Title
+========================== */
+.sms-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%; /* Ensure the section takes up full height */
+}
+
+.sms-section h2 {
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 40px;
+    font-weight: bold;
+    /* No need to set text-align to center, it's already handled by flexbox */
+}
+
+
+/* ==========================
+   SMS Card Container
 ========================== */
 .sms-card {
     display: flex;
@@ -46,17 +94,18 @@ body {
     padding: 30px;
     background-color: #fafafa;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
 }
 
 /* ==========================
-   SMS Selection Area
+   Form Section: SMS Selection
 ========================== */
 .sms-selection {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     flex: 1 1 100%;
-    flex-wrap: wrap;
 }
 
 .sms-selection > div {
@@ -78,26 +127,6 @@ select,
 input,
 textarea {
     width: 100%;
-    padding: 12px 14px; /* More padding for a better look */
-    font-size: 16px; /* Slightly larger text */
-    border-radius: 8px; /* More rounded borders */
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-sizing: border-box;
-}
-
-/* ==========================
-   Selected Templates Section
-========================== */
-
-#templateNumberSection {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-}
-
-#templateNumberSection input {
-    width: 100%;
     padding: 12px 14px;
     font-size: 16px;
     border-radius: 8px;
@@ -106,20 +135,45 @@ textarea {
     box-sizing: border-box;
 }
 
-.selected-templates {
+/* ==========================
+   Selective SMS Input
+========================== */
+.selective-sms-section {
     flex: 1 1 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 12px;
-    background-color: #f0f0f0;
-    border-radius: 6px;
-    margin-top: 10px;
-    box-sizing: border-box;
+    margin-top: 20px;
 }
 
-.template-tag {
-    background-color: #e2e8f0; /* Lighter background for template tags */
+.selective-sms-section textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* ==========================
+   Template Value Input
+========================== */
+.template-value-section {
+    flex: 1 1 100%;
+    margin-top: 10px;
+    display: none;
+}
+
+/* ==========================
+   Dynamic Template Values Display
+========================== */
+#templateValuesDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    padding: 10px;
+    background-color: #ffffff28;
+    border-radius: 10px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.template-value-tag {
+    background-color: #e2e8f0;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 15px;
@@ -132,61 +186,7 @@ textarea {
     color: #e74c3c;
     font-weight: bold;
     cursor: pointer;
-    font-size: 18px; /* Slightly larger close icon */
-}
-
-/* ==========================
-   Template Value Input
-========================== */
-.template-value-section {
-    flex: 1 1 100%;
-    margin-top: 10px;
-    display: none; /* Hidden by default */
-}
-
-.template-value-section input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-
-/* ==========================
-   Selected Values Display
-========================== */
-#selectedValuesDisplay {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 60px;
-    height: 40px;
-    gap: 10px;
-    padding: 10px;
-    background-color: #ffffff28;
-    border-radius: 10px;
-    margin-top: 20px; /* Add space before this section */
-    justify-content: flex-start; /* Align tags to the left */
-}
-
-/* ==========================
-   Selective SMS Textarea
-========================== */
-.selective-sms-section {
-    flex: 1 1 100%;
-    margin-top: 20px;
-}
-
-.selective-sms-section textarea {
-    height: 120px;
-    resize: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-sizing: border-box;
+    font-size: 18px;
 }
 
 /* ==========================
@@ -208,7 +208,7 @@ button {
 
 button:hover {
     background-color: #2980b9;
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05);
 }
 
 /* ==========================
@@ -240,12 +240,12 @@ button:hover {
         margin-bottom: 20px;
     }
 
-    .template-tag {
-        font-size: 13px; /* Slightly smaller tag text */
+    .template-value-tag {
+        font-size: 13px;
     }
 
     .remove-btn {
-        font-size: 16px; /* Slightly larger cross button */
+        font-size: 16px;
     }
 }
 
@@ -253,35 +253,47 @@ button:hover {
    Drawer Styles
 ========================== */
 .drawer {
-    display: none; /* Initially hidden */
+    display: none;
     position: fixed;
-    margin-top: 80px;
+    margin-top: 60px;
     top: 0;
     left: 0;
     width: 250px;
     height: 100%;
-    background-color: #3333337b;
+    background-color: rgba(51, 51, 51, 0.9);
     color: white;
     padding-top: 50px;
     z-index: 1000;
     transition: transform 0.3s ease-in-out;
-    transform: translateX(-250px); /* Hide the drawer off-screen */
+    transform: translateX(-250px);
 }
 
 .drawer.open {
-    transform: translateX(0); /* Slide the drawer in */
-    display: block; /* Make the drawer visible */
+    transform: translateX(0);
+    display: block;
 }
 
 .drawer a {
     display: block;
-    padding: 8px 16px;
+    padding: 12px 20px;
     color: white;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .drawer a:hover {
     background-color: #dfedb7a5;
-    color: rgb(249, 249, 249);
+    color: #f9f9f9;
     text-decoration: underline;
+}
+
+/* Submenu Styling */
+.submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.drawer a.active + .submenu,
+.drawer a:hover + .submenu {
+    display: block;
 }

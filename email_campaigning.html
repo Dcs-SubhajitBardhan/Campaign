@@ -2,167 +2,161 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Email Campaigning</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="emailCampining.css" />
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Campaigning</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="whatsappCampining.css">
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
-    <span>My Website</span>
-  </div>
-
-  <!-- Drawer -->
-  <div id="drawer" class="drawer">
-    <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
-    <div id="home-submenu" class="submenu">
-      <a href="phone.html">Phone</a>
-      <a href="email.html">Email</a>
+    <div class="navbar">
+        <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
+        <span>My Website</span>
     </div>
 
-    <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
-    <div id="template-submenu" class="submenu">
-      <a href="templatecontent.html">Template Content</a>
-    </div>
-
-    <a href="#" onclick="toggleSubMenu('campaigning-submenu')">Campaigning</a>
-    <div id="campaigning-submenu" class="submenu">
-      <a href="whatsapp_campaigning.html">WhatsApp Campaigning</a>
-      <a href="email_campaigning.html">Email Campaigning</a>
-      <a href="sms_campaigning.html">SMS Campaigning</a>
-    </div>
-
-    <a href="#">Contact</a>
-  </div>
-
-  <!-- Email Section -->
-  <div class="email-section">
-    <h2>Email Campaigning</h2>
-
-    <div class="email-card">
-      <div class="email-selection">
-        <!-- Email Type -->
-        <div>
-          <label for="emailType">Choose Email Type:</label>
-          <select id="emailType" onchange="toggleEmailInput()">
-            <option value="all">All Email</option>
-            <option value="selective">Selective Email</option>
-          </select>
+    <div id="drawer" class="drawer">
+        <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
+        <div id="home-submenu" class="submenu">
+            <a href="phone.html">Phone</a>
+            <a href="email.html">Email</a>
         </div>
 
-        <!-- Template Dropdown -->
-        <div>
-          <label for="templateSelect">Select Template:</label>
-          <select id="templateSelect" onchange="handleTemplateChange()">
-            <option value="" disabled selected>Select Template</option>
-            <option value="Template 1">Template 1</option>
-            <option value="Template 2">Template 2</option>
-            <option value="Template 3">Template 3</option>
-          </select>
+        <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
+        <div id="template-submenu" class="submenu">
+            <a href="templatecontent.html">Template Content</a>
         </div>
-      </div>
 
-      <div id="templateValueSection" class="template-value-section">
-        <label for="templateValue">Enter Value (number):</label>
-        <input type="number" id="templateValue" placeholder="e.g., 100" onkeydown="handleEnterKey(event)" />
-      </div>
+        <a href="#" onclick="toggleSubMenu('campaigning-submenu')">Campaigning</a>
+        <div id="campaigning-submenu" class="submenu">
+            <a href="email_campaigning.html">Email Campaigning</a>
+            <a href="sms_campaigning.html">SMS Campaigning</a>
+            <a href="whatsapp_campaigning.html">What's App Campaigning</a>
+        </div>
 
-      <!-- Selected Values Display -->
-      <div id="selectedValuesDisplay">
-        <!-- Tags with value will be displayed here -->
-      </div>
-
-      <!-- Conditional Email Input -->
-      <div class="selective-email-section">
-        <label for="emails">Enter Emails (comma separated):</label>
-        <textarea id="emails" placeholder="Enter email addresses here..."></textarea>
-      </div>
-
-      <!-- Submit Button -->
-      <button onclick="submitEmailCampaign()">Submit Campaign</button>
+        <a href="#">Contact</a>
     </div>
-  </div>
 
-  <script>
-    function toggleDrawer() {
-      const drawer = document.getElementById('drawer');
-      drawer.classList.toggle('open'); // Toggle the 'open' class to slide the drawer in and out
-    }
+    <div class="email-section">
+        <h2>Email Campaigning</h2>
 
-    function toggleSubMenu(id) {
-      const submenu = document.getElementById(id);
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
+        <div class="email-card">
+            <div class="email-selection">
+                <label for="emailType">Choose Email Type:</label>
+                <select id="emailType" onchange="toggleEmailInput()">
+                    <option value="all">All Emails</option>
+                    <option value="selective">Selective Emails</option>
+                </select>
 
-    function toggleEmailInput() {
-      const emailType = document.getElementById("emailType").value;
-      const selectiveEmailSection = document.querySelector(".selective-email-section");
-      selectiveEmailSection.style.display = emailType === "selective" ? "block" : "none";
-    }
+                <label for="templateType">Choose Template:</label>
+                <select id="templateType" onchange="toggleTemplateInput()">
+                    <option value="">Select Template</option>
+                    <option value="template1">Template 1</option>
+                    <option value="template2">Template 2</option>
+                    <option value="template3">Template 3</option>
+                </select>
+            </div>
 
-    function handleTemplateChange() {
-      const templateSelect = document.getElementById("templateSelect");
-      const templateValueSection = document.getElementById("templateValueSection");
+            <div class="selective-email-section" style="display:none;">
+                <label for="emails">Enter Email Addresses (comma separated):</label>
+                <textarea id="emails" placeholder="Enter email addresses here"></textarea>
+            </div>
 
-      if (templateSelect.value) {
-        templateValueSection.style.display = "block";
-      } else {
-        templateValueSection.style.display = "none";
-      }
-    }
+            <div class="template-value-section" id="templateValueSection" style="display:none;">
+                <label for="templateValue">Enter Value for Selected Template:</label>
+                <input type="text" id="templateValue" placeholder="Enter your string here" onkeydown="handleEnter(event)">
+            </div>
 
-    function handleEnterKey(event) {
-      // Check if the Enter key (key code 13) is pressed
-      if (event.key === "Enter") {
-        event.preventDefault(); // Prevent form submission if it's in a form
+            <!-- Section to show entered values with a cross button -->
+            <div id="templateValuesDisplay" class="template-values-display"></div>
 
-        const valueInput = document.getElementById("templateValue");
-        const value = valueInput.value;
+            <button onclick="submitEmailCampaign()">Submit Campaign</button>
+        </div>
+    </div>
 
-        if (value && !isNaN(value)) {
-          // Create the value tag
-          const tag = document.createElement("div");
-          tag.className = "selected-value";
-          tag.innerHTML = `${value} <span class="remove-btn" onclick="removeValueTag(this)">×</span>`;
-          
-          // Append the tag to the display section
-          document.getElementById("selectedValuesDisplay").appendChild(tag);
+    <script src="drawer.js"></script>
 
-          // Clear the input field after adding the value
-          valueInput.value = "";
+    <script>
+        function toggleEmailInput() {
+            const emailType = document.getElementById("emailType").value;
+            const selectiveEmailSection = document.querySelector(".selective-email-section");
+
+            if (emailType === "selective") {
+                selectiveEmailSection.style.display = "block";
+            } else {
+                selectiveEmailSection.style.display = "none";
+            }
         }
-      }
-    }
 
-    function removeValueTag(span) {
-      const tag = span.parentElement;
-      tag.remove();
-    }
+        function toggleTemplateInput() {
+            const templateType = document.getElementById("templateType").value;
+            const templateValueSection = document.getElementById("templateValueSection");
 
-    function submitEmailCampaign() {
-      const emailType = document.getElementById("emailType").value;
-      const selectedTemplate = document.getElementById("templateSelect").value || "None";
-      const selectedValues = document.getElementsByClassName("selected-value");
-      
-      let values = [];
-      for (let i = 0; i < selectedValues.length; i++) {
-        values.push(selectedValues[i].textContent.replace('×', '').trim());
-      }
+            if (templateType !== "") {
+                templateValueSection.style.display = "block";
+            } else {
+                templateValueSection.style.display = "none";
+            }
+        }
 
-      if (emailType === "all") {
-        alert(`Submitting campaign to ALL emails\nTemplate: ${selectedTemplate}\nValues: ${values.join(', ')}`);
-      } else {
-        const emails = document.getElementById("emails").value;
-        alert(`Submitting campaign to SELECTED emails:\n${emails}\nTemplate: ${selectedTemplate}\nValues: ${values.join(', ')}`);
-      }
-    }
-  </script>
+        // Function to handle "Enter" key press in the template value input
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission (if inside a form)
+                addTemplateValue();  // Call the function to add the value to the section
+            }
+        }
+
+        // Function to add the entered value to the display section
+        function addTemplateValue() {
+            const templateValue = document.getElementById("templateValue").value;
+            const templateValuesDisplay = document.getElementById("templateValuesDisplay");
+
+            if (templateValue !== "") {
+                // Create a new div to display the value with a cross button
+                const valueDiv = document.createElement("div");
+                valueDiv.classList.add("template-value-tag");
+
+                // Create the value text node
+                const valueText = document.createElement("span");
+                valueText.textContent = templateValue;
+                valueDiv.appendChild(valueText);
+
+                // Create the cross button to remove the value
+                const removeBtn = document.createElement("span");
+                removeBtn.textContent = "❌";
+                removeBtn.classList.add("remove-btn");
+                removeBtn.onclick = function () {
+                    valueDiv.remove();
+                };
+                valueDiv.appendChild(removeBtn);
+
+                // Append the new value div to the display section
+                templateValuesDisplay.appendChild(valueDiv);
+
+                // Clear the input field after adding the value
+                document.getElementById("templateValue").value = "";
+            }
+        }
+
+        function submitEmailCampaign() {
+            const emailType = document.getElementById("emailType").value;
+            const templateValue = document.getElementById("templateValue").value;
+
+            if (emailType === "all") {
+                alert("Submitting campaign to all email users.");
+            } else {
+                const emails = document.getElementById("emails").value;
+                alert("Submitting campaign to selected email addresses: " + emails);
+            }
+
+            if (templateValue) {
+                alert("Using template value: " + templateValue);
+            }
+        }
+    </script>
+
 </body>
 
 </html>

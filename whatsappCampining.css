@@ -1,4 +1,6 @@
-/* General Styling */
+/* ==========================
+   General Styling
+========================== */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -7,12 +9,14 @@ body {
     color: #333;
 }
 
-/* Email Section */
+/* ==========================
+   Email Section Container
+========================== */
 .email-section {
     padding: 40px;
-    margin-top: 100px; /* 100px top margin */
-    width: 90%; /* Adjust width to 90% for better responsiveness */
-    max-width: 1200px; /* Max width to avoid too large a layout on very wide screens */
+    margin-top: 100px;
+    width: 90%;
+    max-width: 1200px;
     background-color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -25,8 +29,10 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Heading */
-h2 {
+/* ==========================
+   Heading
+========================== */
+.email-section h2 {
     text-align: center;
     color: #333;
     font-size: 26px;
@@ -35,7 +41,9 @@ h2 {
     text-transform: uppercase;
 }
 
-/* Email Card Style */
+/* ==========================
+   Email Card
+========================== */
 .email-card {
     background-color: #f9f9f9;
     padding: 35px;
@@ -43,7 +51,9 @@ h2 {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Email Selection Dropdown */
+/* ==========================
+   Email Selection (Dropdowns)
+========================== */
 .email-selection {
     display: flex;
     flex-wrap: wrap;
@@ -52,12 +62,12 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Dropdown Styling */
 .email-selection label {
     font-size: 16px;
     color: #555;
     margin-bottom: 8px;
     font-weight: 500;
+    display: block;
 }
 
 .email-selection select {
@@ -68,8 +78,8 @@ h2 {
     background-color: #fff;
     width: 100%;
     max-width: 300px;
-    display: block;
     transition: all 0.3s ease;
+    display: block;
 }
 
 .email-selection select:focus {
@@ -78,7 +88,9 @@ h2 {
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
-/* Selective Email Section (Textbox) */
+/* ==========================
+   Selective Email Section (Text Area)
+========================== */
 .selective-email-section {
     margin-top: 20px;
     display: none;
@@ -110,69 +122,14 @@ h2 {
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
 }
 
-/* Submit Button */
-button {
-    width: 100%;
-    padding: 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 20px;
-    display: block;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-/* Button Active State */
-button:active {
-    transform: translateY(1px);
-}
-
-/* Responsive Design for Mobile */
-@media (max-width: 768px) {
-    .email-section {
-        padding: 20px;
-    }
-
-    .email-selection select,
-    .selective-email-section textarea,
-    button {
-        font-size: 14px;
-    }
-
-    .email-selection {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .email-selection label {
-        margin-bottom: 6px;
-    }
-
-    .email-selection select {
-        max-width: 100%;
-    }
-
-    button {
-        padding: 12px;
-    }
-}
-/* ================================
-   Template Value Input Section
-================================= */
+/* ==========================
+   Template Value Input
+========================== */
 .template-value-section {
     margin-top: 20px;
-    display: none; /* Hidden by default, shown on template selection */
+    display: none;
 }
 
-/* Input where user types the value */
 .template-value-section input {
     width: 100%;
     padding: 12px 16px;
@@ -190,9 +147,9 @@ button:active {
     outline: none;
 }
 
-/* ================================
-   Display Added Template Tags
-================================= */
+/* ==========================
+   Template Value Tags Display
+========================== */
 .template-values-display {
     margin-top: 15px;
     display: flex;
@@ -200,7 +157,6 @@ button:active {
     gap: 10px;
 }
 
-/* Individual Tag Styling */
 .template-value-tag {
     display: inline-flex;
     align-items: center;
@@ -213,18 +169,70 @@ button:active {
     transition: background-color 0.2s ease;
 }
 
-/* Remove (cross) button inside the tag */
 .template-value-tag .remove-btn {
     margin-left: 10px;
     color: #e74c3c;
     font-weight: bold;
     cursor: pointer;
     font-size: 18px;
-    line-height: 1;
     user-select: none;
     transition: color 0.2s ease;
 }
 
 .template-value-tag .remove-btn:hover {
     color: #c0392b;
+}
+
+/* ==========================
+   Submit Button
+========================== */
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* ==========================
+   Responsive Design
+========================== */
+@media (max-width: 768px) {
+    .email-section {
+        padding: 20px;
+    }
+
+    .email-selection {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .email-selection select,
+    .selective-email-section textarea,
+    button {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .email-selection label {
+        margin-bottom: 6px;
+    }
+
+    button {
+        padding: 12px;
+    }
 }
