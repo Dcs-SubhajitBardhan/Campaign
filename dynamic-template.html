@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Navigation Bar with Side Drawer</title>
+  <title>Dynamic Email Template</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="dynamic-template.css">
 </head>
@@ -45,15 +45,23 @@
     <label>Value:</label>
     <input type="text" id="companyInput" placeholder="Enter value" />
     <button onclick="addRecipient()">Add</button>
+    <button onclick="generateEmailTemplate()">Generate Email</button>
   </div>
 
   <!-- Output Cards -->
   <div id="output"></div>
 
+  <!-- Generated Email Template -->
+  <div id="emailTemplate" style="display: none;">
+    <h3 id="email-generated">Generated Email:</h3>
+    <div id="emailContent"></div>
+  </div>
+
   <!-- JavaScript -->
   <script>
     const recipients = [];
 
+    // Function to generate dynamic content for the recipients list
     function generateDynamicContent(data, outputId) {
       const outputElement = document.getElementById(outputId);
       outputElement.innerHTML = ""; // Clear previous
@@ -63,7 +71,7 @@
         container.className = "entry hidden"; // Hidden by default
 
         const text = document.createElement("p");
-        text.innerHTML = `<strong>Name :</strong> ${item.name} &emsp;&emsp; <strong>Value :</strong> ${item.company}`;
+        text.innerHTML = `<strong>Name:</strong> ${item.name} &emsp;&emsp; <strong>Value:</strong> ${item.company}`;
         container.appendChild(text);
 
         const deleteBtn = document.createElement("button");
@@ -83,6 +91,7 @@
       });
     }
 
+    // Function to add a recipient to the recipients array
     function addRecipient() {
       const name = document.getElementById("nameInput").value.trim();
       const company = document.getElementById("companyInput").value.trim();
@@ -97,9 +106,57 @@
       }
     }
 
-    // Side Drawer Toggle (if not already in drawer.js)
-    
+    // Function to generate the email template dynamically
+    // Function to generate the email template dynamically
+function generateEmailTemplate() {
+  if (recipients.length === 0) {
+    alert("Please add at least one recipient.");
+    return;
+  }
+
+  let emailContent = "<div style='font-family: Arial, sans-serif; line-height: 1.6; width: 70%; margin: 0 auto;'>"; // Set width to 70% and center the content
+
+  // Loop through each recipient and generate personalized email content
+  recipients.forEach(item => {
+    emailContent += `
+      <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+        <h3 style="color: #2c3e50;">Hello <span style="color: #3498db;">${item.name}</span>,</h3>
+        <p style="font-size: 16px; color: #555;">We are pleased to inform you that your company <strong style="color: #e67e22;">${item.company}</strong> is eligible for special offers. Please find the details below:</p>
+        
+        <div style="margin-left: 20px; padding-left: 20px; border-left: 3px solid #3498db;">
+          <ul style="list-style-type: none; padding: 0;">
+            
+          </ul>
+        </div>
+
+        <p style="font-size: 16px; color: #555;">We are excited about the opportunity to work with your company. Feel free to reach out if you have any questions or need further information.</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; font-weight: bold; color: #2c3e50;">Your Company Name</p>
+      </div>
+      <hr style="border: 1px solid #ddd;" />
+    `;
+  });
+
+  emailContent += "</div>"; // Close the wrapper div
+
+  // Display the generated email content
+  document.getElementById("emailContent").innerHTML = emailContent;
+  document.getElementById("emailTemplate").style.display = "block"; // Show email template
+}
+
+
+    // Side Drawer Toggle
+    function toggleDrawer() {
+      const drawer = document.getElementById("drawer");
+      drawer.style.display = drawer.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleSubMenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+    }
   </script>
+
   <script src="drawer.js"></script>
 </body>
 </html>

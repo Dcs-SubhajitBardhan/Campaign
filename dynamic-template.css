@@ -147,3 +147,8 @@
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
+#email-generated{
+    text-align: center;
+    align-items: center;
+    color: #f1f8f6;
+}
