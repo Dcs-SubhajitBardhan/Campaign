@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navigation Bar with Side Drawer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dynamic-template.css" />
+</head>
+<body>
+  <div class="navbar">
+    <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
+    <span>My Website</span>
+  </div>
+
+  <div id="drawer" class="drawer">
+    <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
+    <div id="home-submenu" class="submenu">
+      <a href="phone.html">Phone</a>
+      <a href="email.html">Email</a>
+    </div>
+
+    <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
+    <div id="template-submenu" class="submenu">
+      <a href="templatecontent.html">Template Content</a>
+    </div>
+
+    <a href="#" onclick="toggleSubMenu('campaigning-submenu')">Campaigning</a>
+    <div id="campaigning-submenu" class="submenu">
+      <a href="whatsapp_campaigning.html">WhatsApp Campaigning</a>
+      <a href="email_campaigning.html">Email Campaigning</a>
+      <a href="sms_campaigning.html">SMS Campaigning</a>
+    </div>
+
+    <a href="dynamic-template.html">Dynamic Template</a>
+  </div>
+
+  <!-- Input Fields -->
+  <div id="form">
+    <label>Name:</label>
+    <input type="text" id="nameInput" placeholder="Enter name" />
+    <label>Value:</label>
+    <input type="text" id="companyInput" placeholder="Enter field" />
+    <button onclick="addRecipient()">Add</button>
+  </div>
+
+  <!-- Output Section -->
+  <div id="output"></div>
+
+  <!-- JavaScript Section -->
+  <script src="drawer.js"></script>
+  <script>
+    const recipients = [];
+
+    function generateDynamicContent(data, outputId) {
+      const outputElement = document.getElementById(outputId);
+      outputElement.innerHTML = ""; // Clear existing
+
+      data.forEach((item, index) => {
+        const container = document.createElement("div");
+        container.className = "entry";
+
+        const text = document.createElement("p");
+        text.innerHTML = `<strong>Hello:</strong> ${item.name} <br> <strong>Fields:</strong> ${item.company}`;
+        container.appendChild(text);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = () => {
+          recipients.splice(index, 1);
+          generateDynamicContent(recipients, outputId);
+        };
+        container.appendChild(deleteBtn);
+
+        outputElement.appendChild(container);
+      });
+    }
+
+    function addRecipient() {
+      const name = document.getElementById("nameInput").value.trim();
+      const company = document.getElementById("companyInput").value.trim();
+
+      if (name && company) {
+        recipients.push({ name, company });
+        generateDynamicContent(recipients, "output");
+
+        document.getElementById("nameInput").value = "";
+        document.getElementById("companyInput").value = "";
+      } else {
+        alert("Please fill in both fields.");
+      }
+    }
+
+    // Optional: Load initial data
+    generateDynamicContent(recipients, "output");
+  </script>
+</body>
+</html>

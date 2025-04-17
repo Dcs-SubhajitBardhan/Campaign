@@ -1,0 +1,77 @@
+.dynamic {
+    border: 2px solid #4CAF50; /* Green border for distinction */
+    background-color: #f9f9f9; /* Light gray background for readability */
+    padding: 15px; /* Space inside the div */
+    margin: 10px 0; /* Space between elements */
+    border-radius: 8px; /* Rounded corners */
+    font-family: Arial, sans-serif; /* Clean and modern font */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.dynamic p {
+    color: #333; /* Text color */
+    font-size: 16px; /* Easy-to-read text size */
+    margin: 5px 0; /* Space between paragraphs */
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds space between form elements */
+    width: 90%; /* Sets a fixed width for the form */
+    margin: 20px auto; /* Centers the form on the page */
+    padding: 15px; /* Adds padding inside the form */
+    border: 2px solid #4CAF50; /* Green border for form box */
+    border-radius: 8px; /* Rounded corners for the form box */
+    background-color: #f9f9f9; /* Light gray background for the form box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Clean font style */
+}
+
+#form label {
+    font-weight: bold; /* Makes the labels bold */
+    font-size: 14px; /* Sets a readable font size */
+    color: #333; /* Dark text color */
+}
+
+#form input {
+    padding: 8px; /* Adds padding inside inputs */
+    border: 1px solid #ccc; /* Light gray border for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 14px; /* Sets font size in inputs */
+    outline: none; /* Removes default focus outline */
+    transition: border-color 0.3s ease; /* Smooth focus effect */
+}
+
+#form input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green glow on focus */
+}
+
+#form button {
+    padding: 10px; /* Adds padding inside the button */
+    background-color: #4CAF50; /* Green background for button */
+    color: white; /* White text color */
+    border: none; /* Removes default button border */
+    border-radius: 5px; /* Rounded corners for button */
+    font-size: 14px; /* Sets font size for button */
+    font-weight: bold; /* Makes the button text bold */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+#form button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#output {
+    margin: 20px auto; /* Centers the output section on the page */
+    padding: 15px; /* Adds padding inside the output box */
+    border: 1px solid #ccc; /* Light gray border for output */
+    border-radius: 8px; /* Rounded corners for output box */
+    background-color: #fff; /* White background for output box */
+    width: 300px; /* Sets a fixed width for the output box */
+    font-family: Arial, sans-serif; /* Matches form font style */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
