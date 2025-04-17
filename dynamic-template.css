@@ -65,13 +65,51 @@
 }
 
 #output {
-    margin: 20px auto; /* Centers the output section on the page */
-    padding: 15px; /* Adds padding inside the output box */
-    border: 1px solid #ccc; /* Light gray border for output */
-    border-radius: 8px; /* Rounded corners for output box */
-    background-color: #fff; /* White background for output box */
-    width: 300px; /* Sets a fixed width for the output box */
-    font-family: Arial, sans-serif; /* Matches form font style */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 15px; /* Adjusted padding for a balanced look */
+    border: 2px solid #4CAF50; /* Green border for visual appeal */
+    border-radius: 10px; /* Rounded corners for modern design */
+    background: linear-gradient(135deg, #f9f9f9, #e0f7e0); /* Gradient background for a dynamic feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    font-family: 'Arial', sans-serif; /* Clean and readable font */
+    color: #333; /* Dark text for contrast */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation effects */
 }
+
+#output:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+#output .content {
+    margin-bottom: 10px; /* Space between individual items */
+    padding: 10px; /* Padding inside content items */
+    background-color: #fff; /* White background for separation */
+    border: 1px solid #ddd; /* Subtle border for each item */
+    border-radius: 8px; /* Rounded corners for individual items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+#output .content:hover {
+    background-color: #f0fff0; /* Slight green tint on hover */
+}
+
+/* Adding animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#output .content {
+    animation: fadeIn 0.5s ease; /* Smooth entry animation for each item */
+}
+
 
