@@ -211,3 +211,11 @@ body {
         width: 80%; /* Expanded drawer width for small screens */
     }
 }
+
+
+h1{
+    align-items: center;
+    text-align: center;
+    margin-top: 300px;
+    color: #f0f4f8;
+}
