@@ -44,8 +44,14 @@
     <input type="text" id="nameInput" placeholder="Enter name" />
     <label>Value:</label>
     <input type="text" id="companyInput" placeholder="Enter value" />
+    
+    
+    <!-- <button onclick="generateEmailTemplate()">Generate Email</button> -->
+
+    <label for="customTemplate">Enter Custom Template:</label>
+    <textarea id="customTemplate" rows="6" cols="50" placeholder="Enter your custom email template here with placeholders like [name] and [value]."></textarea>
+
     <button onclick="addRecipient()">Add</button>
-    <button onclick="generateEmailTemplate()">Generate Email</button>
   </div>
 
   <!-- Output Cards -->
@@ -64,7 +70,7 @@
     // Function to generate dynamic content for the recipients list
     function generateDynamicContent(data, outputId) {
       const outputElement = document.getElementById(outputId);
-      outputElement.innerHTML = ""; // Clear previous
+      outputElement.innerHTML = ""; // Clear previous content
 
       data.forEach((item, index) => {
         const container = document.createElement("div");
@@ -103,47 +109,47 @@
         document.getElementById("companyInput").value = "";
       } else {
         alert("Please fill in both fields.");
-      }
+      }generateEmailTemplate();
     }
 
-    // Function to generate the email template dynamically
-    // Function to generate the email template dynamically
-function generateEmailTemplate() {
-  if (recipients.length === 0) {
-    alert("Please add at least one recipient.");
-    return;
-  }
+    // Function to generate the email template dynamically using custom template
+    function generateEmailTemplate() {
+      if (recipients.length === 0) {
+        alert("Please add at least one recipient.");
+        return;
+      }
 
-  let emailContent = "<div style='font-family: Arial, sans-serif; line-height: 1.6; width: 70%; margin: 0 auto;'>"; // Set width to 70% and center the content
+      const customTemplate = document.getElementById("customTemplate").value.trim();
+      if (!customTemplate) {
+        alert("Please enter a custom template.");
+        return;
+      }
 
-  // Loop through each recipient and generate personalized email content
-  recipients.forEach(item => {
-    emailContent += `
-      <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-        <h3 style="color: #2c3e50;">Hello <span style="color: #3498db;">${item.name}</span>,</h3>
-        <p style="font-size: 16px; color: #555;">We are pleased to inform you that your company <strong style="color: #e67e22;">${item.company}</strong> is eligible for special offers. Please find the details below:</p>
-        
-        <div style="margin-left: 20px; padding-left: 20px; border-left: 3px solid #3498db;">
-          <ul style="list-style-type: none; padding: 0;">
-            
-          </ul>
-        </div>
+      let emailContent = "<div style='font-family: Arial, sans-serif; line-height: 1.6; width: 70%; margin: 0 auto;'>"; // Set width to 70% and center the content
 
-        <p style="font-size: 16px; color: #555;">We are excited about the opportunity to work with your company. Feel free to reach out if you have any questions or need further information.</p>
-        <p style="font-size: 16px; color: #555;">Best regards,</p>
-        <p style="font-size: 16px; font-weight: bold; color: #2c3e50;">Your Company Name</p>
-      </div>
-      <hr style="border: 1px solid #ddd;" />
-    `;
-  });
+      // Loop through each recipient and generate personalized email content
+      recipients.forEach(item => {
+        let personalizedEmail = customTemplate;
 
-  emailContent += "</div>"; // Close the wrapper div
+        // Replace placeholders with recipient data
+        personalizedEmail = personalizedEmail.replace("[name]", item.name);
+        personalizedEmail = personalizedEmail.replace("[value]", item.company);
 
-  // Display the generated email content
-  document.getElementById("emailContent").innerHTML = emailContent;
-  document.getElementById("emailTemplate").style.display = "block"; // Show email template
-}
+        // Insert the personalized email as raw HTML to preserve formatting
+        emailContent += `
+          <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            ${personalizedEmail}
+          </div>
+          <hr style="border: 1px solid #ddd;" />
+        `;
+      });
 
+      emailContent += "</div>"; // Close the wrapper div
+
+      // Display the generated email content
+      document.getElementById("emailContent").innerHTML = emailContent;
+      document.getElementById("emailTemplate").style.display = "block"; // Show email template
+    }
 
     // Side Drawer Toggle
     function toggleDrawer() {
