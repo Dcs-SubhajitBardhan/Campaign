@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Navigation Bar with Side Drawer</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="dynamic-template.css" />
+  <link rel="stylesheet" href="dynamic-template.css">
 </head>
 <body>
+
+  <!-- Navbar -->
   <div class="navbar">
     <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
     <span>My Website</span>
   </div>
 
+  <!-- Side Drawer -->
   <div id="drawer" class="drawer">
     <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
     <div id="home-submenu" class="submenu">
@@ -35,33 +38,32 @@
     <a href="dynamic-template.html">Dynamic Template</a>
   </div>
 
-  <!-- Input Fields -->
+  <!-- Input Form -->
   <div id="form">
     <label>Name:</label>
     <input type="text" id="nameInput" placeholder="Enter name" />
     <label>Value:</label>
-    <input type="text" id="companyInput" placeholder="Enter field" />
+    <input type="text" id="companyInput" placeholder="Enter value" />
     <button onclick="addRecipient()">Add</button>
   </div>
 
-  <!-- Output Section -->
+  <!-- Output Cards -->
   <div id="output"></div>
 
-  <!-- JavaScript Section -->
-  <script src="drawer.js"></script>
+  <!-- JavaScript -->
   <script>
     const recipients = [];
 
     function generateDynamicContent(data, outputId) {
       const outputElement = document.getElementById(outputId);
-      outputElement.innerHTML = ""; // Clear existing
+      outputElement.innerHTML = ""; // Clear previous
 
       data.forEach((item, index) => {
         const container = document.createElement("div");
-        container.className = "entry";
+        container.className = "entry hidden"; // Hidden by default
 
         const text = document.createElement("p");
-        text.innerHTML = `<strong>Name :</strong> ${item.name}\t \t <strong>Value :</strong> ${item.company}`;
+        text.innerHTML = `<strong>Name :</strong> ${item.name} &emsp;&emsp; <strong>Value :</strong> ${item.company}`;
         container.appendChild(text);
 
         const deleteBtn = document.createElement("button");
@@ -73,6 +75,11 @@
         container.appendChild(deleteBtn);
 
         outputElement.appendChild(container);
+
+        // Reveal animation
+        setTimeout(() => {
+          container.classList.remove("hidden");
+        }, 100);
       });
     }
 
@@ -83,7 +90,6 @@
       if (name && company) {
         recipients.push({ name, company });
         generateDynamicContent(recipients, "output");
-
         document.getElementById("nameInput").value = "";
         document.getElementById("companyInput").value = "";
       } else {
@@ -91,8 +97,16 @@
       }
     }
 
-    // Optional: Load initial data
-    generateDynamicContent(recipients, "output");
+    // Side Drawer Toggle (if not already in drawer.js)
+    function toggleDrawer() {
+      const drawer = document.getElementById("drawer");
+      drawer.style.display = drawer.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleSubMenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+    }
   </script>
 </body>
 </html>
