@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navbar -->
     <div class="navbar">
         <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
         <span>My Website</span>
     </div>
+    <!-- Navbar -->
 
+    <!-- Drawr -->
     <div id="drawer" class="drawer">
         <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
         <div id="home-submenu" class="submenu">
@@ -23,6 +26,8 @@
         <div id="template-submenu" class="submenu">
             <a href="templatecontent.html">Template Content</a>
         </div>
+        <a href="table.html" onclick="toggleSubMenu('template-submenu')">Table</a>
+        
         
         <!-- Changed 'Services' to 'Campaigning' -->
         <a href="#" onclick="toggleSubMenu('campaigning-submenu')">Campaigning</a>
@@ -38,7 +43,7 @@
         <h1 id = "content">Hello, Awesome Human! 👋</h1>
         <p id="content-sub">Welcome to your creative space. Let’s make something amazing today!</p>
     </div>
-    
+    <!-- Drawr -->
 
     <script src="drawer.js"></script>
 </body>
