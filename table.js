@@ -7,10 +7,31 @@ const data = [
     { id: 6, name: "Reminder", type: "WhatsApp", date: "2025-04-06" },
     { id: 7, name: "Survey", type: "Email", date: "2025-04-07" },
     { id: 8, name: "Follow-up", type: "SMS", date: "2025-04-08" },
+    { id: 9, name: "Campaign D", type: "Email", date: "2025-04-09" },
+    { id: 10, name: "Promo E", type: "SMS", date: "2025-04-10" },
+    { id: 11, name: "Event F", type: "WhatsApp", date: "2025-04-11" },
+    { id: 12, name: "Launch G", type: "Email", date: "2025-04-12" },
+    { id: 13, name: "Offer H", type: "SMS", date: "2025-04-13" },
+    { id: 14, name: "Reminder I", type: "WhatsApp", date: "2025-04-14" },
+    { id: 15, name: "Survey J", type: "Email", date: "2025-04-15" },
+    { id: 16, name: "Promo K", type: "SMS", date: "2025-04-16" },
+    { id: 17, name: "Event L", type: "WhatsApp", date: "2025-04-17" },
+    { id: 18, name: "Newsletter M", type: "Email", date: "2025-04-18" },
+    { id: 19, name: "Flash Sale N", type: "SMS", date: "2025-04-19" },
+    { id: 20, name: "Reminder O", type: "WhatsApp", date: "2025-04-20" },
+    { id: 21, name: "Survey P", type: "Email", date: "2025-04-21" },
+    { id: 22, name: "Follow-up Q", type: "SMS", date: "2025-04-22" },
+    { id: 23, name: "Campaign R", type: "WhatsApp", date: "2025-04-23" },
+    { id: 24, name: "Offer S", type: "Email", date: "2025-04-24" },
+    { id: 25, name: "Event T", type: "SMS", date: "2025-04-25" },
+    { id: 26, name: "Promo U", type: "WhatsApp", date: "2025-04-26" },
+    { id: 27, name: "Survey V", type: "Email", date: "2025-04-27" },
+    { id: 28, name: "Reminder W", type: "SMS", date: "2025-04-28" }
+
 ];
 
 let currentPage = 1;
-const rowsPerPage = 3;
+const rowsPerPage = 10;
 
 function displayTable(page) {
     const tbody = document.querySelector("#data-table tbody");
