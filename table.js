@@ -33,6 +33,26 @@ const data = [
 let currentPage = 1;
 const rowsPerPage = 10;
 
+function filterTable() {
+    const search = document.getElementById("searchInput").value.toLowerCase();
+    const type = document.getElementById("typeFilter").value;
+    const date = document.getElementById("dateFilter").value;
+
+    filteredData = data.filter(row => {
+        const matchSearch = row.name.toLowerCase().includes(search);
+        const matchType = type === "" || row.type === type;
+        const matchDate = date === "" || row.date === date;
+
+        return matchSearch && matchType && matchDate;
+    });
+
+    currentPage = 1;
+    displayTable(filteredData, currentPage);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    filterTable(); // loads table with all data initially
+});
 function displayTable(page) {
     const tbody = document.querySelector("#data-table tbody");
     tbody.innerHTML = "";

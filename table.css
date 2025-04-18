@@ -104,3 +104,23 @@ button:hover {
     background: linear-gradient(135deg, #C70039, #900C3F); /* Darkens the gradient on hover */
     transform: scale(1.05); /* Slight zoom effect for better interactivity */
 }
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.table-controls input[type="text"],
+.table-controls select,
+.table-controls input[type="date"] {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Arial', sans-serif;
+    width: 30%;
+    min-width: 150px;
+}

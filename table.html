@@ -36,8 +36,21 @@
         <a href="dynamic-template.html">Dynamic Template</a>
     </div>
     <div class="table-container">
-        <h2>Campaign Data Table</h2>
         
+        
+        <h2>Campaign Data Table</h2>
+        <div class="table-controls">
+            <input type="text" id="searchInput" placeholder="Search campaigns..." oninput="filterTable()" />
+        
+            <select id="typeFilter" onchange="filterTable()">
+                <option value="">All Types</option>
+                <option value="Email">Email</option>
+                <option value="SMS">SMS</option>
+                <option value="WhatsApp">WhatsApp</option>
+            </select>
+        
+            <input type="date" id="dateFilter" onchange="filterTable()" />
+        </div>
         <table id="data-table">
             <thead>
                 <tr>
