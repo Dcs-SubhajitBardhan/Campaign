@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar with Side Drawer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="table.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="menu.png" alt="Menu" class="open-btn" onclick="toggleDrawer()" />
+        <span>My Website</span>
+    </div>
+
+    <div id="drawer" class="drawer">
+        <a href="#" onclick="toggleSubMenu('home-submenu')">Contact</a>
+        <div id="home-submenu" class="submenu">
+            <a href="phone.html">Phone</a>
+            <a href="email.html">Email</a>
+        </div>
+        
+        <a href="#" onclick="toggleSubMenu('template-submenu')">Template</a>
+        <div id="template-submenu" class="submenu">
+            <a href="templatecontent.html">Template Content</a>
+        </div>
+        
+        <!-- Changed 'Services' to 'Campaigning' -->
+        <a href="#" onclick="toggleSubMenu('campaigning-submenu')">Campaigning</a>
+        <div id="campaigning-submenu" class="submenu">
+            <a href="whatsapp_campaigning.html">WhatsApp Campaigning</a>
+            <a href="email_campaigning.html">Email Campaigning</a>
+            <a href="sms_campaigning.html">SMS Campaigning</a>
+        </div>
+        
+        <a href="dynamic-template.html">Dynamic Template</a>
+    </div>
+    <div class="table-container">
+        <h2>Campaign Data Table</h2>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Campaign Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button onclick="prevPage()">Prev</button>
+            <span id="page-info"></span>
+            <button onclick="nextPage()">Next</button>
+        </div>
+        <button onclick="exportToCSV()">Export to CSV</button>
+    </div>
+    
+    <script src="table.js"></script>
+    
+    
+
+    <script src="drawer.js"></script>
+</body>
+</html>
